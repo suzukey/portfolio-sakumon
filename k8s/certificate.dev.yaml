@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: certificate
+  namespace: default
+spec:
+  secretName: certificate-tls
+  issuerRef:
+    name: letsencrypt-staging
+  commonName: localhost
+  dnsNames:
+    - sakumon.localhost

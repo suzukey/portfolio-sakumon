@@ -1,0 +1,25 @@
+# projectのホームディレクトリから実行してください
+apiVersion: skaffold/v2beta2
+kind: Config
+
+# Dockerイメージのビルドに関する設定
+build:
+  artifacts:
+  # ビルドするイメージ
+  local:
+    push: false
+
+# デプロイに関する設定
+deploy:
+  kubectl:
+    manifests:
+      # MyContainer
+      - k8s/web-test-*.yaml
+      - k8s/ingress.dev.yaml
+      # Certificate
+      # - k8s/issuer.dev.yaml
+      # - k8s/certificate.dev.yaml
+      # Ingress
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+      # Certmanager
+      # - https://github.com/jetstack/cert-manager/releases/download/v0.14.3/cert-manager.yaml
