@@ -13,13 +13,12 @@ build:
 deploy:
   kubectl:
     manifests:
-      # MyContainer
-      - k8s/web-test-*.yaml
+      # MyContainers
+      - k8s/echo*.yaml
       - k8s/ingress.dev.yaml
       # Certificate
-      # - k8s/issuer.dev.yaml
-      # - k8s/certificate.dev.yaml
+      # - 後日実装予定
       # Ingress
       - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
-      # Certmanager
-      # - https://github.com/jetstack/cert-manager/releases/download/v0.14.3/cert-manager.yaml
+      # CertManager
+      # - https://github.com/jetstack/cert-manager/releases/download/v0.15.0-beta.1/cert-manager.yaml
