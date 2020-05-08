@@ -1,11 +1,12 @@
-# projectのホームディレクトリから実行してください
 apiVersion: skaffold/v2beta2
 kind: Config
 
 # Dockerイメージのビルドに関する設定
 build:
   artifacts:
-  # ビルドするイメージ
+    # ビルドするイメージ
+    - image: suzukey/pf-sakumon-backend
+      context: backend/
   local:
     push: false
 
@@ -14,7 +15,8 @@ deploy:
   kubectl:
     manifests:
       # MyContainers
-      - k8s/echo*.yaml
+      - k8s/echo1.yaml
+      - k8s/backend.yaml
       - k8s/ingress.dev.yaml
       # Certificate
       # - 後日実装予定
