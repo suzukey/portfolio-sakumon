@@ -21,8 +21,8 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: echo1
-              servicePort: 80
+              serviceName: nuxt-frontend
+              servicePort: 3000
           - path: /api($|/.+)
             backend:
               serviceName: rails-backend

@@ -5,6 +5,8 @@ kind: Config
 build:
   artifacts:
     # ビルドするイメージ
+    - image: suzukey/pf-sakumon-frontend
+      context: frontend/
     - image: suzukey/pf-sakumon-backend
       context: backend/
   local:
@@ -15,7 +17,7 @@ deploy:
   kubectl:
     manifests:
       # MyContainers
-      - k8s/echo1.yaml
+      - k8s/frontend.yaml
       - k8s/backend.yaml
       - k8s/ingress.dev.yaml
       # Certificate
