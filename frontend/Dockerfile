@@ -8,9 +8,13 @@ RUN apt-get update
 
 WORKDIR /app
 
-ADD app/ ./
+COPY app/package.json .
+COPY app/yarn.lock .
 
 RUN yarn install
+
+COPY app/ .
+
 RUN yarn build
 
 EXPOSE 3000

@@ -10,6 +10,7 @@ build:
     - image: suzukey/pf-sakumon-backend
       context: backend/
   local:
+    useBuildkit: true
     push: false
 
 # デプロイに関する設定

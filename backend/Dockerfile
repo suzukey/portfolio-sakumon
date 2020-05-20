@@ -6,10 +6,12 @@ RUN apt-get update
 
 WORKDIR /app
 
-ADD app/ ./
+COPY app/Gemfile .
+COPY app/Gemfile.lock .
 
-RUN bundle config --local disable_platform_warnings true
 RUN bundle install
+
+COPY app/ .
 
 EXPOSE 3000
 CMD ["bundle", "exec", "puma"]
