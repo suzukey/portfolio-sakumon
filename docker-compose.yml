@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  pf-sakumon-backend:
+    container_name: pf-sakumon-backend
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/app:/app
+  pf-sakumon-frontend:
+    container_name: pf-sakumon-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "80:3000"
+    volumes:
+      - ./frontend/app:/app
