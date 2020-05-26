@@ -4,19 +4,13 @@ module V1
     before_action :authenticate_v1_user!, only: [:create, :update, :destroy]
     # 対象の投稿を見つける
     before_action :set_post, only: [:show, :update, :destroy]
-    # 投稿が見つからなかった場合のエラーを返す
-    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    # 編集・削除する権限があるかチェック
+    before_action :check_authorization, only: [:update, :destroy]
 
     def index
       posts = Post.order(created_at: :desc)
       render json: {
         data: posts
-      }, status: :ok
-    end
-
-    def show
-      render json: {
-        data: @post
       }, status: :ok
     end
 
@@ -34,8 +28,7 @@ module V1
       end
     end
 
-    def destroy
-      @post.destroy
+    def show
       render json: {
         data: @post
       }, status: :ok
@@ -53,20 +46,26 @@ module V1
       end
     end
 
+    def destroy
+      @post.destroy
+      render json: {
+        data: @post
+      }, status: :ok
+    end
+
     private
 
     def set_post
       @post = Post.find_by!(id: params[:id])
     end
 
-    def post_params
-      params.permit(:title)
+    def check_authorization
+      # 投稿主とログインユーザーが一致する場合のみ変更を許可
+      raise Forbidden if @post.user_id != current_v1_user.id
     end
 
-    def record_not_found
-      render json: {
-        message: 'Record Not Found'
-      }, status: :not_found
+    def post_params
+      params.permit(:title, :description)
     end
   end
 end
