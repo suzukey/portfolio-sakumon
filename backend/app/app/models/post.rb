@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 
   before_create :randomize_id
 
-  enum status: { public: 0, private: 1, unlisted: 2 }
+  enum status: { public: 0, private: 1, unlisted: 2 }, _prefix: true
 
   belongs_to :user
   validates :public_id, uniqueness: true

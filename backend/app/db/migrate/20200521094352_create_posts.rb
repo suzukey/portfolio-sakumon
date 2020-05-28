@@ -7,7 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       t.string :description
 
-      t.integer :status, null: false
+      t.integer :status, default: 0, null: false
 
       t.timestamps
     end

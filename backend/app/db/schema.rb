@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_094352) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.string "description"
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["public_id"], name: "index_posts_on_public_id", unique: true
