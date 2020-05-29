@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
 
   def forbidden
     render json: {
-      message: 'Unauthorized'
+      message: 'Forbidden'
     }, status: :forbidden
   end
 end

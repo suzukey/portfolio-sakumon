@@ -7,8 +7,9 @@ module V1
     # 編集・削除する権限があるかチェック
     before_action :check_authorization, only: [:update, :destroy]
 
+    # publicしか全体で表示しない
     def index
-      posts = Post.order(created_at: :desc)
+      posts = Post.status_public.order(created_at: :desc)
       render json: {
         data: posts
       }, status: :ok
@@ -28,7 +29,12 @@ module V1
       end
     end
 
+    # publicとunlistedは直リンクから誰でも見れる
+    # privateは本人しか見れない
     def show
+      # privateに投稿者ではないアクセスの場合、エラーを返す
+      @post.status_private? && check_authorization
+
       render json: {
         data: @post
       }, status: :ok
@@ -47,10 +53,15 @@ module V1
     end
 
     def destroy
-      @post.destroy
-      render json: {
-        data: @post
-      }, status: :ok
+      if @post.destroy
+        render json: {
+          data: @post
+        }, status: :ok
+      else
+        render json: {
+          data: @post.errors
+        }, status: :bad_request
+      end
     end
 
     private
@@ -60,12 +71,12 @@ module V1
     end
 
     def check_authorization
-      # 投稿主とログインユーザーが一致する場合のみ変更を許可
-      raise Forbidden if @post.user_id != current_v1_user.id
+      # 投稿主とログインしていないか、ユーザーidが一致しなければエラー
+      raise Forbidden if !v1_user_signed_in? || @post.user_id != current_v1_user.id
     end
 
     def post_params
-      params.permit(:title, :description)
+      params.permit(:title, :description, :status)
     end
   end
 end
