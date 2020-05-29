@@ -13,5 +13,7 @@ RUN bundle install
 
 COPY app/ .
 
+ENV RAILS_ENV=development
+
 EXPOSE 3000
 CMD ["bundle", "exec", "puma"]
