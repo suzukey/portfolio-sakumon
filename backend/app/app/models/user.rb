@@ -5,7 +5,14 @@ class User < ApplicationRecord
   # :recoverable, :trackable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
+
   include DeviseTokenAuth::Concerns::User
 
+  before_create :randomize_id
+
+  has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
+
+  validates :email,
+            uniqueness: true
 end

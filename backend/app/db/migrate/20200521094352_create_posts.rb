@@ -1,8 +1,7 @@
 class CreatePosts < ActiveRecord::Migration[6.0]
   def change
-    create_table :posts do |t|
-      t.string :public_id, null: false
-      t.integer :user_id, null: false
+    create_table :posts, id: :string do |t|
+      t.string :user_id, null: false
 
       t.string :title, null: false
       t.string :description
@@ -11,7 +10,5 @@ class CreatePosts < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-
-    add_index :posts, :public_id, unique: true
   end
 end
