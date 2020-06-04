@@ -10,9 +10,14 @@ class User < ApplicationRecord
 
   before_create :randomize_id
 
-  has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
 
   validates :email,
             uniqueness: true
+  validates :name,
+            uniqueness: true,
+            presence: true,
+            length: { in: 3..14 }
+  validates :introduction,
+            length: { maximum: 150 }
 end
