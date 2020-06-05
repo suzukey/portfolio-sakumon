@@ -8,8 +8,16 @@ module V1
           :email,
           :password,
           :name,
+          :nickname
+        )
+      end
+
+      def account_update_params
+        params.permit(
+          :email,
+          :name,
           :nickname,
-          :introduction
+          :profile
         )
       end
     end
