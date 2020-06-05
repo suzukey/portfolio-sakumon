@@ -7,7 +7,11 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  validates :status,
+  validates :title,
             presence: true,
-            inclusion: { in: 0..2 }
+            length: { maximum: 48 }
+  validates :description,
+            length: { maximum: 150 }
+  validates :status,
+            presence: true
 end
