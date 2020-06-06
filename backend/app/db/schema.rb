@@ -12,30 +12,29 @@
 
 ActiveRecord::Schema.define(version: 2020_05_21_094352) do
 
-  create_table "posts", force: :cascade do |t|
-    t.string "public_id", null: false
-    t.integer "user_id", null: false
+  create_table "posts", id: :string, force: :cascade do |t|
+    t.string "user_id", null: false
     t.string "title", null: false
     t.string "description"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["public_id"], name: "index_posts_on_public_id", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :string, force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "remember_created_at"
-    t.string "name"
-    t.string "nickname"
-    t.string "image"
     t.string "email"
+    t.string "name", null: false
+    t.string "nickname", default: "User", null: false
+    t.string "profile"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
