@@ -10,9 +10,15 @@ module V1
     # publicしか全体で表示しない
     def index
       posts = Post.status_public.order(created_at: :desc)
-      render json: {
-        data: posts
-      }, status: :ok
+      options = {
+        include: %i(user),
+        fields: {
+          post: %i(title description user),
+          user: %i(name nickname)
+        }
+      }
+      json_string = PostSerializer.new(posts, options).serialized_json
+      render json: json_string, status: :ok
     end
 
     def create
