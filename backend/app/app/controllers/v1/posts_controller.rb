@@ -10,18 +10,16 @@ module V1
     # publicしか全体で表示しない
     def index
       posts = Post.status_public.order(created_at: :desc)
-      render json: {
-        data: posts
-      }, status: :ok
+      json_string = serialize_to_json(posts)
+      render json: json_string, status: :ok
     end
 
     def create
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
       if post.save
-        render json: {
-          data: post
-        }, status: :created
+        json_string = serialize_to_json(post)
+        render json: json_string, status: :created
       else
         render json: {
           data: post.errors
@@ -35,16 +33,14 @@ module V1
       # privateに投稿者ではないアクセスの場合、エラーを返す
       @post.status_private? && check_authorization
 
-      render json: {
-        data: @post
-      }, status: :ok
+      json_string = serialize_to_json(@post)
+      render json: json_string, status: :ok
     end
 
     def update
       if @post.update(post_params)
-        render json: {
-          data: @post
-        }, status: :ok
+        json_string = serialize_to_json(@post)
+        render json: json_string, status: :ok
       else
         render json: {
           data: @post.errors
@@ -54,9 +50,8 @@ module V1
 
     def destroy
       if @post.destroy
-        render json: {
-          data: @post
-        }, status: :ok
+        json_string = serialize_to_json(@post)
+        render json: json_string, status: :ok
       else
         render json: {
           data: @post.errors
@@ -77,6 +72,17 @@ module V1
 
     def post_params
       params.permit(:title, :description, :status)
+    end
+
+    def serialize_to_json(posts)
+      options = {
+        include: %i(user),
+        fields: {
+          post: %i(title description created_at updated_at user),
+          user: %i(name, nickname)
+        }
+      }
+      PostSerializer.new(posts, options).serialized_json
     end
   end
 end
