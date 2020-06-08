@@ -3,5 +3,5 @@ class PostSerializer
 
   belongs_to :user
 
-  attributes :title, :description
+  attributes :title, :description, :created_at, :updated_at
 end
