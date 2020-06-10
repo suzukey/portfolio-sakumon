@@ -76,10 +76,10 @@ module V1
 
     def serialize_to_json(posts)
       options = {
-        include: %i(user),
+        include: %i[user],
         fields: {
-          post: %i(title description created_at updated_at user),
-          user: %i(name, nickname)
+          post: %i[title description created_at updated_at user],
+          user: %i[name nickname]
         }
       }
       PostSerializer.new(posts, options).serialized_json
