@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_114410) do
   create_table "posts", id: :string, force: :cascade do |t|
     t.string "user_id", null: false
     t.string "title", null: false
-    t.string "description"
+    t.text "description"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_114410) do
   create_table "questions", id: :string, force: :cascade do |t|
     t.string "post_id", null: false
     t.text "statement", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_questions_on_post_id"

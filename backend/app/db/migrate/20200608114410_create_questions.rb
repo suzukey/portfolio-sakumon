@@ -5,6 +5,8 @@ class CreateQuestions < ActiveRecord::Migration[6.0]
 
       t.text :statement, null: false
 
+      t.integer :status, default: 0, null: false
+
       t.timestamps
     end
   end
