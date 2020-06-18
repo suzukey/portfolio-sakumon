@@ -9,7 +9,10 @@ module V1
                     .status_public
       end
 
-      render json: posts, status: :ok
+      options = {}
+      json_string = UserPostSerializer.new(posts, options).serialized_json
+
+      render json: json_string, status: :ok
     end
   end
 end
