@@ -18,8 +18,7 @@ module V1
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
       if post.save
-        json_string = serialize_to_json(post)
-        render json: json_string, status: :created
+        render status: :created
       else
         render json: {
           data: post.errors
@@ -39,8 +38,7 @@ module V1
 
     def update
       if @post.update(post_params)
-        json_string = serialize_to_json(@post)
-        render json: json_string, status: :ok
+        render status: :no_content
       else
         render json: {
           data: @post.errors
@@ -50,8 +48,7 @@ module V1
 
     def destroy
       if @post.destroy
-        json_string = serialize_to_json(@post)
-        render json: json_string, status: :ok
+        render status: :no_content
       else
         render json: {
           data: @post.errors
@@ -76,10 +73,10 @@ module V1
 
     def serialize_to_json(posts)
       options = {
-        include: %i(user),
+        include: %i[user],
         fields: {
-          post: %i(title description created_at updated_at user),
-          user: %i(name, nickname)
+          post: %i[title description created_at updated_at user],
+          user: %i[name nickname]
         }
       }
       PostSerializer.new(posts, options).serialized_json

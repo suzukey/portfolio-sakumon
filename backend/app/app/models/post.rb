@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
   enum status: { public: 0, private: 1, unlisted: 2 }, _prefix: true
 
+  has_many :questions, dependent: :destroy
   belongs_to :user
 
   validates :title,
