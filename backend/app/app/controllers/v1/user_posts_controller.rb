@@ -1,5 +1,6 @@
 module V1
   class UserPostsController < ApplicationController
+    # ユーザーの投稿一覧を取得
     def index
       if v1_user_signed_in? && current_v1_user.name == params[:user_name]
         posts = current_v1_user.posts
