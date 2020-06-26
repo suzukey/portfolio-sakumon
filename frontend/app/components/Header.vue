@@ -1,7 +1,6 @@
 <template>
-  <v-app-bar fixed color="cyan darken-2" dark>
-    <v-app-bar-nav-icon />
-    <v-toolbar-title>Sakumon</v-toolbar-title>
+  <v-app-bar app color="cyan darken-2" dark>
+    <v-toolbar-title>SakuMon</v-toolbar-title>
 
     <v-spacer />
 
@@ -10,7 +9,13 @@
     </v-btn>
 
     <v-btn icon>
-      <v-icon>mdi-account-circle</v-icon>
+      <v-icon>mdi-square-edit-outline</v-icon>
+    </v-btn>
+
+    <v-btn icon>
+      <v-avatar color="" size="48">
+        <v-icon dark>mdi-account-circle</v-icon>
+      </v-avatar>
     </v-btn>
   </v-app-bar>
 </template>
