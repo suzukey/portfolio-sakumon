@@ -7,7 +7,7 @@
       </v-subheader>
       <v-tabs v-model="tab" color="cyan darken-2" show-arrows>
         <v-tab v-for="trend in trends" :key="trend.tab">
-          {{ trend.tab }}
+          {{ trend.name }}
         </v-tab>
       </v-tabs>
 
@@ -31,12 +31,13 @@ export default {
     return {
       posts: {},
       loading: true,
-      tab: null,
+      tab: 0,
       trends: [
-        { tab: '日間' },
-        { tab: '週間' },
-        { tab: '年間' },
-        { tab: '全体' },
+        { tab: 'day', name: 'Day' },
+        { tab: 'week', name: 'Week' },
+        { tab: 'month', name: 'Month' },
+        { tab: 'year', name: 'Year' },
+        { tab: 'all', name: 'All' },
       ],
     }
   },
