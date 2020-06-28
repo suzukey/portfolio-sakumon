@@ -5,15 +5,14 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import MyHeader from '~/components/Header.vue'
 
-export default Vue.extend({
+export default {
   components: {
-    MyHeader
-  }
-})
+    MyHeader,
+  },
+}
 </script>
 
 <style>
@@ -30,8 +29,8 @@ html {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
 }

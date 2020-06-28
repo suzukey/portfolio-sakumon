@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app color="cyan darken-2" dark>
-    <v-toolbar-title class="d-none d-sm-flex">
+    <v-toolbar-title class="d-none d-sm-flex font-weight-bold">
       SakuMon
     </v-toolbar-title>
 
@@ -33,13 +33,12 @@
   </v-app-bar>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
+<script>
+export default {
   computed: {
-    isAuthenticated () {
+    isAuthenticated() {
       return Math.random() >= 0.5
-    }
-  }
-})
+    },
+  },
+}
 </script>

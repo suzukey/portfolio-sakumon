@@ -1,7 +1,5 @@
 # sakumon
 
-> sakumon Nuxt.js project
-
 ## Build Setup
 
 ```bash
