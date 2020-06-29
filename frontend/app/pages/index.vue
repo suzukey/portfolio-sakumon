@@ -1,69 +1,28 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        sakumon
-      </h1>
-      <h2 class="subtitle">
-        sakumon Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <v-main>
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="12">
+          <trend-posts></trend-posts>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="12">
+          <latest-posts></latest-posts>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
+<script>
+import LatestPosts from '~/components/posts/LatestPosts.vue'
+import TrendPosts from '~/components/posts/TrendPosts.vue'
 
-export default Vue.extend({
+export default {
   components: {
-    Logo
-  }
-})
+    LatestPosts,
+    TrendPosts,
+  },
+}
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
