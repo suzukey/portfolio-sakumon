@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute app color="primary" dark padless>
+  <v-footer absolute app color="primary" dark>
     <v-container class="footer-content text-center">
       <div class="footer-title mb-3">
         <div class="text-h6">SakuMon</div>
