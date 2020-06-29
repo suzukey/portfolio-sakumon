@@ -75,8 +75,8 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
+          primary: colors.cyan.darken2,
+          accent: colors.amber.darken2,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
@@ -84,8 +84,8 @@ export default {
           success: colors.green.accent3,
         },
         light: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
+          primary: colors.cyan.darken2,
+          accent: colors.amber.darken2,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,

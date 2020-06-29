@@ -2,7 +2,7 @@
   <v-card>
     <v-list two-line>
       <v-subheader>
-        <v-icon class="mr-2">mdi-update</v-icon>
+        <v-icon class="mr-2" color="accent">mdi-update</v-icon>
         <span>最新の投稿</span>
       </v-subheader>
 

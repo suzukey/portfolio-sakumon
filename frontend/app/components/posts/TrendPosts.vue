@@ -2,10 +2,10 @@
   <v-card>
     <v-list two-line>
       <v-subheader>
-        <v-icon class="mr-2">mdi-trending-up</v-icon>
+        <v-icon class="mr-2" color="accent">mdi-trending-up</v-icon>
         <span>人気の投稿</span>
       </v-subheader>
-      <v-tabs v-model="tab" color="cyan darken-2" show-arrows>
+      <v-tabs v-model="tab" color="primary" show-arrows>
         <v-tab v-for="trend in trends" :key="trend.tab">
           {{ trend.name }}
         </v-tab>
