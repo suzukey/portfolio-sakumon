@@ -1,6 +1,6 @@
 <template>
-  <v-app-bar app color="cyan darken-2" dark>
-    <v-toolbar-title class="d-none d-sm-flex font-weight-bold">
+  <v-app-bar app color="primary" dark>
+    <v-toolbar-title class="d-none d-sm-flex font-weight-medium">
       SakuMon
     </v-toolbar-title>
 
@@ -15,11 +15,7 @@
         <v-icon>mdi-square-edit-outline</v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-avatar color="" size="48">
-          <v-icon dark>mdi-account-circle</v-icon>
-        </v-avatar>
-      </v-btn>
+      <account-menu></account-menu>
     </template>
     <template v-else>
       <v-btn text>ログイン</v-btn>
@@ -30,7 +26,12 @@
 </template>
 
 <script>
+import AccountMenu from '~/components/AccountMenu.vue'
+
 export default {
+  component: {
+    AccountMenu,
+  },
   computed: {
     isAuthenticated() {
       return true
