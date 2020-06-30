@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app color="primary" dark :elevate-on-scroll="elevateOnScroll">
     <v-toolbar-title class="d-none d-sm-flex font-weight-medium">
       SakuMon
     </v-toolbar-title>
@@ -32,9 +32,15 @@ export default {
   component: {
     AccountMenu,
   },
+  props: {
+    elevateOnScroll: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     isAuthenticated() {
-      return true
+      return false
     },
   },
 }

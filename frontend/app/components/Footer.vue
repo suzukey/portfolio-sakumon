@@ -3,7 +3,7 @@
     <v-container class="footer-content text-center">
       <div class="footer-title mb-3">
         <div class="text-h6">SakuMon</div>
-        <div class="text-caption">サクッと作る・解く問題集</div>
+        <div class="text-caption">サクっと作る・解く問題集</div>
       </div>
 
       <span class="text-caption">
