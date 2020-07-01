@@ -28,7 +28,6 @@ import LatestPosts from '~/components/posts/LatestPosts.vue'
 import TrendPosts from '~/components/posts/TrendPosts.vue'
 
 export default {
-  layout: 'customizable',
   components: {
     MyHeader,
     MyFooter,
@@ -41,5 +40,11 @@ export default {
       return true
     },
   },
+  head() {
+    return {
+      titleTemplate: '',
+    }
+  },
+  layout: 'customizable',
 }
 </script>
