@@ -14,6 +14,7 @@
             <latest-posts></latest-posts>
           </v-col>
         </v-row>
+        <scroll-to-top></scroll-to-top>
       </v-container>
     </v-main>
     <my-footer></my-footer>
@@ -23,6 +24,7 @@
 <script>
 import MyHeader from '~/components/Header.vue'
 import MyFooter from '~/components/Footer.vue'
+import ScrollToTop from '~/components/ScrollToTop.vue'
 import HomeAbout from '~/components/HomeAbout.vue'
 import LatestPosts from '~/components/posts/LatestPosts.vue'
 import TrendPosts from '~/components/posts/TrendPosts.vue'
@@ -31,6 +33,7 @@ export default {
   components: {
     MyHeader,
     MyFooter,
+    ScrollToTop,
     HomeAbout,
     LatestPosts,
     TrendPosts,
