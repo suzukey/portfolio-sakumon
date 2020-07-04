@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="primary" dark :elevate-on-scroll="elevateOnScroll">
     <v-toolbar-title class="d-none d-sm-flex">
-      <nuxt-link to="/" class="title-link white--text font-weight-medium">
+      <nuxt-link to="/" class="title-link font-weight-medium">
         SakuMon
       </nuxt-link>
     </v-toolbar-title>
@@ -50,6 +50,7 @@ export default {
 
 <style scoped>
 .title-link {
+  color: inherit;
   text-decoration: none;
 }
 </style>
