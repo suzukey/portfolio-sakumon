@@ -16,8 +16,8 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s | SakuMon',
+    title: 'SakuMon',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -75,8 +75,8 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.cyan.darken2,
-          accent: colors.amber.darken2,
+          primary: colors.cyan.darken3,
+          accent: colors.amber.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
@@ -91,7 +91,7 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-        }
+        },
       },
     },
   },
