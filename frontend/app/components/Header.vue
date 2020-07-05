@@ -6,7 +6,7 @@
     dark
     :elevate-on-scroll="elevateOnScroll"
   >
-    <template v-if="!search">
+    <template v-if="!showSearch">
       <v-toolbar-title class="d-none d-sm-flex">
         <nuxt-link to="/" class="title-link font-weight-medium">
           SakuMon
@@ -15,7 +15,7 @@
 
       <v-spacer />
 
-      <v-btn icon @click="search = true">
+      <v-btn icon @click="toggleSearch">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
@@ -33,10 +33,11 @@
       </template>
     </template>
     <template v-else>
-      <v-btn icon class="mr-2" @click="search = false">
+      <v-btn icon class="mr-2" @click="toggleSearch">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-text-field
+        v-model="searchText"
         autofocus
         clearable
         dense
@@ -46,6 +47,7 @@
         prepend-inner-icon="mdi-magnify"
         color="white"
         label="検索"
+        @keyup.enter="submitSearch"
       ></v-text-field>
     </template>
   </v-app-bar>
@@ -66,7 +68,8 @@ export default {
   },
   data() {
     return {
-      search: false,
+      showSearch: false,
+      searchText: '',
     }
   },
   computed: {
@@ -75,8 +78,23 @@ export default {
     },
   },
   methods: {
+    toggleSearch() {
+      this.showSearch = !this.showSearch
+    },
     onClickOutside() {
-      this.search = false
+      this.showSearch = false
+    },
+    submitSearch() {
+      this.searchText = this.searchText.replace(/\u3000/g, ' ')
+      this.searchText = this.searchText.trim()
+      if (this.searchText !== '') {
+        this.$router.push({
+          path: '/search',
+          query: { q: this.searchText },
+        })
+        this.searchText = ''
+        this.showSearch = false
+      }
     },
   },
 }

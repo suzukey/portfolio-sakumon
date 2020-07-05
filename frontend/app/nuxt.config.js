@@ -61,6 +61,16 @@ export default {
     '@nuxtjs/axios',
   ],
   /*
+   ** vue-router module configuration
+   */
+  router: {
+    stringifyQuery: (query) => {
+      const qs = require('qs')
+      const result = qs.stringify(query, { format: 'RFC1738' })
+      return result ? '?' + result : ''
+    },
+  },
+  /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
