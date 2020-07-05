@@ -44,6 +44,7 @@
         outlined
         single-line
         prepend-inner-icon="mdi-magnify"
+        color="white"
         label="検索"
       ></v-text-field>
     </template>
