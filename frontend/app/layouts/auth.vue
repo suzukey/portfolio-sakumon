@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-main class="primary text-center white--text" style="min-width: 320px;">
+    <v-main class="primary" style="min-width: 320px;">
       <v-container class="py-10">
-        <v-row>
+        <v-row class="text-center white--text">
           <v-col col="12">
             <div class="title text-h3 text-sm-h2 font-weight-medium">
               <nuxt-link to="/">SakuMon</nuxt-link>
@@ -14,7 +14,11 @@
         </v-row>
         <v-row>
           <v-col col="12">
-            <v-card light class="ma-auto px-5 py-15" style="max-width: 440px;">
+            <v-card
+              light
+              class="ma-auto px-5 py-7 py-sm-12"
+              style="max-width: 440px;"
+            >
               <nuxt />
             </v-card>
           </v-col>

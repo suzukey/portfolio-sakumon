@@ -4,25 +4,47 @@
     <v-form @submit.prevent="submit">
       <v-text-field
         v-model="name"
-        :counter="10"
+        :counter="16"
         prepend-inner-icon="mdi-account"
         label="ユーザー名"
       />
       <v-text-field
         v-model="email"
-        :counter="10"
         prepend-inner-icon="mdi-email"
         label="メールアドレス"
       />
       <v-text-field
         v-model="password"
         type="password"
-        :counter="10"
         prepend-inner-icon="mdi-lock"
         label="パスワード"
       />
-      <v-btn type="submit" block color="primary" x-large class="mt-10">
-        <span class="font-weight-bold text-h6">登録する</span>
+      <p class="agrees text-left mt-7 mb-5">
+        <span>アカウントを登録することにより、</span>
+        <nuxt-link to="terms">利用規約</nuxt-link>
+        <span>および</span>
+        <nuxt-link to="privacy">プライバシーポリシー</nuxt-link>
+        <span>に同意するものとします。</span>
+      </p>
+      <v-btn
+        type="submit"
+        block
+        color="primary"
+        depressed
+        x-large
+        class="mb-0 mt-2"
+      >
+        <span class="font-weight-bold text-subtitle-1">登録する</span>
+      </v-btn>
+      <v-btn
+        type="submit"
+        block
+        color="primary"
+        outlined
+        x-large
+        class="mb-5 mt-2"
+      >
+        <span class="font-weight-bold text-subtitle-1">かんたんログイン</span>
       </v-btn>
     </v-form>
   </v-card-text>
@@ -50,3 +72,9 @@ export default {
   layout: 'auth',
 }
 </script>
+
+<style scoped>
+.agrees a {
+  text-decoration: none;
+}
+</style>
