@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import AccountMenu from '~/components/AccountMenu.vue'
+import AccountMenu from '~/components/common/AccountMenu.vue'
 
 export default {
   component: {
