@@ -16,6 +16,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
+    htmlAttrs: {
+      lang: 'ja',
+    },
     titleTemplate: '%s | SakuMon',
     title: 'SakuMon',
     meta: [
@@ -24,10 +27,24 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content:
+          'サクっと作る・解く問題集 あなたの知識のサポートに。 「自分で作って自分で解く」「他人の作った問題を解く」「自分で作って公開する」など使い方はあなた次第！',
       },
+      { name: 'apple-mobile-web-app-title', content: 'Sakumon' },
+      { name: 'application-name', content: 'SakuMon' },
+      { name: 'msapplication-TileColor', content: '#00aba9' },
+      { name: 'theme-color', content: '#ffffff' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/svg+xmln', href: '/favicon.svg' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
+    ],
   },
   /*
    ** Global CSS
