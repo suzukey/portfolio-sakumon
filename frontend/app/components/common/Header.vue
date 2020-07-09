@@ -7,9 +7,10 @@
     :elevate-on-scroll="elevateOnScroll"
   >
     <template v-if="!showSearch">
-      <v-toolbar-title class="d-none d-sm-flex">
+      <v-toolbar-title>
         <nuxt-link to="/" class="title-link font-weight-medium">
-          SakuMon
+          <v-icon large>$vuetify.icons.values.sakumon</v-icon>
+          <span class="ml-3 d-none d-sm-inline">SakuMon</span>
         </nuxt-link>
       </v-toolbar-title>
 
