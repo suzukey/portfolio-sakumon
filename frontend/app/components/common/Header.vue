@@ -8,9 +8,12 @@
   >
     <template v-if="!showSearch">
       <v-toolbar-title>
-        <nuxt-link to="/" class="title-link font-weight-medium">
+        <nuxt-link
+          to="/"
+          class="title-link font-weight-medium d-flex align-center"
+        >
           <v-icon large>$vuetify.icons.values.sakumon</v-icon>
-          <span class="ml-3 d-none d-sm-inline">SakuMon</span>
+          <span class="ml-2 d-none d-sm-inline">SakuMon</span>
         </nuxt-link>
       </v-toolbar-title>
 
