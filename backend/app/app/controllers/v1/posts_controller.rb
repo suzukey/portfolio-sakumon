@@ -9,7 +9,7 @@ module V1
 
     # publicしか全体で表示しない
     def index
-      posts = Post.status_public.order(created_at: :desc)
+      posts = Post.status_public.order(created_at: :desc).limit(10)
       json_string = serialize_to_json(posts)
       render json: json_string, status: :ok
     end
@@ -79,7 +79,7 @@ module V1
           user: %i[name nickname]
         }
       }
-      PostSerializer.new(posts, options).serialized_json
+      V1::PostSerializer.new(posts, options).serialized_json
     end
   end
 end

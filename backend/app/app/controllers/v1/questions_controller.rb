@@ -87,7 +87,7 @@ module V1
           post: %i[title]
         }
       }
-      QuestionSerializer.new(questions, options).serialized_json
+      V1::QuestionSerializer.new(questions, options).serialized_json
     end
   end
 end

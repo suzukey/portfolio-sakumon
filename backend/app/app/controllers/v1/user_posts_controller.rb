@@ -11,7 +11,7 @@ module V1
       end
 
       options = {}
-      json_string = UserPostSerializer.new(posts, options).serialized_json
+      json_string = V1::UserPostSerializer.new(posts, options).serialized_json
 
       render json: json_string, status: :ok
     end
