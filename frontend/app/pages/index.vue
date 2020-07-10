@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import MyHeader from '~/components/Header.vue'
-import MyFooter from '~/components/Footer.vue'
-import ScrollToTop from '~/components/ScrollToTop.vue'
+import MyHeader from '~/components/common/Header.vue'
+import MyFooter from '~/components/common/Footer.vue'
+import ScrollToTop from '~/components/common/ScrollToTop.vue'
 import HomeAbout from '~/components/HomeAbout.vue'
 import LatestPosts from '~/components/posts/LatestPosts.vue'
 import TrendPosts from '~/components/posts/TrendPosts.vue'

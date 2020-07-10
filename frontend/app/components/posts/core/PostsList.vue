@@ -8,10 +8,20 @@
         ></v-skeleton-loader>
       </div>
     </template>
-    <template v-else>
+    <template v-else-if="existPosts">
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
         <v-divider></v-divider>
         <posts-list-item :post="post"></posts-list-item>
+      </div>
+    </template>
+    <template v-else>
+      <div class="not-exist">
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>該当なし</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </div>
     </template>
   </div>
@@ -32,6 +42,11 @@ export default {
     loading: {
       type: Boolean,
       required: true,
+    },
+  },
+  computed: {
+    existPosts() {
+      return this.posts.data
     },
   },
 }
