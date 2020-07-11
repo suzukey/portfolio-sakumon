@@ -10,8 +10,13 @@ module V1
                     .status_public
       end
 
-      options = {}
-      json_string = V1::UserPostSerializer.new(posts, options).serialized_json
+      serializable_resource = ActiveModelSerializers::SerializableResource.new(
+        posts,
+        includes: '**',
+        each_serializer: V1::PostSerializer
+      )
+
+      json_string = serializable_resource.as_json
 
       render json: json_string, status: :ok
     end

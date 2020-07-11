@@ -1,9 +1,8 @@
 module V1
-  class QuestionSerializer
-    include FastJsonapi::ObjectSerializer
+  class QuestionSerializer < ActiveModel::Serializer
+    attributes :statement,
+               :status
 
     belongs_to :post
-
-    attributes :statement, :status
   end
 end

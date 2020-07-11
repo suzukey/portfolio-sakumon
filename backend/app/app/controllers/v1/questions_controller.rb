@@ -80,14 +80,13 @@ module V1
     end
 
     def serialize_to_json(questions)
-      options = {
-        include: %i[post],
-        fields: {
-          question: %i[statement status post],
-          post: %i[title]
-        }
-      }
-      V1::QuestionSerializer.new(questions, options).serialized_json
+      serializable_resource = ActiveModelSerializers::SerializableResource.new(
+        questions,
+        includes: '**',
+        each_serializer: V1::QuestionSerializer
+      )
+
+      serializable_resource.as_json
     end
   end
 end

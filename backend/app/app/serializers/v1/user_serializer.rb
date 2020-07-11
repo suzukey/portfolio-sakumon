@@ -1,7 +1,7 @@
 module V1
-  class UserSerializer
-    include FastJsonapi::ObjectSerializer
-
-    attributes :name, :nickname, :profile
+  class UserSerializer < ActiveModel::Serializer
+    attributes :name,
+               :nickname,
+               :profile
   end
 end

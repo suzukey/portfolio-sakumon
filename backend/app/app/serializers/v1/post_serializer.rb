@@ -1,9 +1,13 @@
 module V1
-  class PostSerializer
-    include FastJsonapi::ObjectSerializer
+  class PostSerializer < ActiveModel::Serializer
+    attributes :title,
+               :description,
+               :created_at
 
     belongs_to :user
-
-    attributes :title, :description, :created_at, :updated_at
+    class UserSerializer < ActiveModel::Serializer
+      attributes :name,
+                 :nickname
+    end
   end
 end

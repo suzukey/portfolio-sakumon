@@ -72,14 +72,13 @@ module V1
     end
 
     def serialize_to_json(posts)
-      options = {
-        include: %i[user],
-        fields: {
-          post: %i[title description created_at updated_at user],
-          user: %i[name nickname]
-        }
-      }
-      V1::PostSerializer.new(posts, options).serialized_json
+      serializable_resource = ActiveModelSerializers::SerializableResource.new(
+        posts,
+        includes: '**',
+        each_serializer: V1::PostSerializer
+      )
+
+      serializable_resource.as_json
     end
   end
 end
