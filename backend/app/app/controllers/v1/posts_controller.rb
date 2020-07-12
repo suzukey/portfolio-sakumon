@@ -58,18 +58,21 @@ module V1
     # 最新投稿をピックアップ (publicのみ)
     def latest
       posts = Post.status_public
-        .order(created_at: :desc).limit(10)
+                  .order(created_at: :desc)
+                  .limit(10)
 
-        render json: posts,
-               each_serializer: V1::PostSerializer,
-               status: :ok
+      render json: posts,
+             each_serializer: V1::PostSerializer,
+             status: :ok
     end
 
     # トレンド投稿をピックアップ (publicのみ)
     def trend
-      scope = params[:scope]
+      # scope = params[:scope]
+
       posts = Post.status_public
-        .order(created_at: :desc).limit(10)
+                  .order(created_at: :desc)
+                  .limit(10)
 
       render json: posts,
              each_serializer: V1::PostSerializer,
@@ -78,13 +81,13 @@ module V1
 
     # 投稿を検索 (publicのみ)
     def search
-      query = params[:query]
-      sort = params[:sort]
+      # query = params[:query]
+      # sort = params[:sort]
       page = params[:page] || 1
 
       posts = Post.status_public
-        .order(created_at: :desc)
-        .page(page).per(10)
+                  .order(created_at: :desc)
+                  .page(page).per(10)
 
       render json: posts,
              each_serializer: V1::PostSerializer,
