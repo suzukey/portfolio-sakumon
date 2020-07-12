@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     }
 
     resources :users, param: :name, only: [:show] do
-      resources :posts,
-                controller: :user_posts,
-                only: [:index]
+      member do
+        get 'posts'
+      end
     end
     resources :posts do
       resources :questions
