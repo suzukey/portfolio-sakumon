@@ -81,13 +81,22 @@ module V1
 
     # 投稿を検索 (publicのみ)
     def search
-      # query = params[:query]
+      query = params[:q]
       # sort = params[:sort]
       page = params[:page] || 1
 
-      posts = Post.status_public
-                  .order(created_at: :desc)
-                  .page(page).per(10)
+      split_keywords = query.split(' ')
+
+      posts = if not query.present?
+        Post.none
+      else
+        Post.status_public
+            .search(:title_cont_any => split_keywords)
+            .result
+      end
+
+      posts = posts.order(created_at: :desc)
+                   .page(page).per(10)
 
       render json: posts,
              each_serializer: V1::PostSerializer,
