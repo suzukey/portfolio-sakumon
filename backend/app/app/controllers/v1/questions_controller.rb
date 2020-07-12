@@ -34,8 +34,9 @@ module V1
 
     # 問題の詳細閲覧
     def show
-      json_string = serialize_to_json(@question)
-      render json: json_string, status: :ok
+      render json: @question,
+             serializer: V1::QuestionSerializer,
+             status: :ok
     end
 
     # 問題の編集
@@ -77,16 +78,6 @@ module V1
 
     def post_params
       params.permit(:statement)
-    end
-
-    def serialize_to_json(questions)
-      serializable_resource = ActiveModelSerializers::SerializableResource.new(
-        questions,
-        includes: '**',
-        each_serializer: V1::QuestionSerializer
-      )
-
-      serializable_resource.as_json
     end
   end
 end

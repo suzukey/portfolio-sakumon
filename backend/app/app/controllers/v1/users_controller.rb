@@ -3,21 +3,17 @@ module V1
     def show
       user = User.find_by!(name: params[:name])
 
-      serializable_resource = ActiveModelSerializers::SerializableResource.new(
-        user,
-        includes: '**',
-        each_serializer: V1::UserSerializer
-      )
-
-      json_string = serializable_resource.as_json
-
-      render json: json_string, status: :ok
+      render json: user,
+             serializer: V1::UserSerializer,
+             status: :ok
     end
 
 
     # ユーザーの投稿一覧を取得
     def posts
       username = params[:name]
+      page = params[:page] || 1
+
       if v1_user_signed_in? && current_v1_user.name == username
         posts = current_v1_user.posts
       else
@@ -26,15 +22,13 @@ module V1
                     .status_public
       end
 
-      serializable_resource = ActiveModelSerializers::SerializableResource.new(
-        posts,
-        includes: '**',
-        each_serializer: V1::UserPostSerializer
-      )
+      posts = posts.order(created_at: :desc)
+                   .page(page).per(10)
 
-      json_string = serializable_resource.as_json
-
-      render json: json_string, status: :ok
+      render json: posts,
+             each_serializer: V1::UserPostSerializer,
+             meta: pagination_dict(posts),
+             status: :ok
     end
   end
 end
