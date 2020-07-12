@@ -24,18 +24,18 @@ module V1
              meta: pagination_dict(posts),
              status: :ok
     end
-  end
 
-  private
+    private
 
-  # 取得先ユーザー名とユーザーが一致していたら非公開など含め全て取得
-  def get_user_posts(username)
-    if v1_user_signed_in? && current_v1_user.name == username
-      current_v1_user.posts
-    else
-      User.find_by!(name: username)
-          .posts
-          .status_public
+    # 取得先ユーザー名とユーザーが一致していたら非公開など含め全て取得
+    def get_user_posts(username)
+      if v1_user_signed_in? && current_v1_user.name == username
+        current_v1_user.posts
+      else
+        User.find_by!(name: username)
+            .posts
+            .status_public
+      end
     end
   end
 end
