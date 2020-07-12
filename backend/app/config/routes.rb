@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     }
 
     resources :users, param: :name, only: [:show] do
-      collection do
+      member do
         get 'posts'
       end
     end
