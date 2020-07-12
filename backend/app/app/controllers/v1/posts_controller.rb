@@ -7,13 +7,7 @@ module V1
     # 編集・削除する権限があるかチェック
     before_action :check_authorization, only: [:update, :destroy]
 
-    # publicしか全体で表示しない
-    def index
-      posts = Post.status_public.order(created_at: :desc).limit(10)
-      json_string = serialize_to_json(posts)
-      render json: json_string, status: :ok
-    end
-
+    # 投稿を作成
     def create
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
@@ -36,6 +30,7 @@ module V1
       render json: json_string, status: :ok
     end
 
+    # 投稿を更新する
     def update
       if @post.update(post_params)
         render status: :no_content
@@ -46,6 +41,7 @@ module V1
       end
     end
 
+    # 投稿を削除する
     def destroy
       if @post.destroy
         render status: :no_content
@@ -54,6 +50,29 @@ module V1
           data: @post.errors
         }, status: :bad_request
       end
+    end
+
+    # --リスト系--------------------------
+
+    # 最新投稿をピックアップ (publicのみ)
+    def latest
+      posts = Post.status_public.order(created_at: :desc).limit(10)
+      json_string = serialize_to_json(posts)
+      render json: json_string, status: :ok
+    end
+
+    # トレンド投稿をピックアップ (publicのみ)
+    def trend
+      posts = Post.status_public.order(created_at: :desc).limit(10)
+      json_string = serialize_to_json(posts)
+      render json: json_string, status: :ok
+    end
+
+    # 投稿を検索 (publicのみ)
+    def search
+      posts = Post.status_public.order(created_at: :desc).limit(10)
+      json_string = serialize_to_json(posts)
+      render json: json_string, status: :ok
     end
 
     private
