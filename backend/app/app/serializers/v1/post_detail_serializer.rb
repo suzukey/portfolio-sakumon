@@ -1,8 +1,10 @@
 module V1
-  class PostSerializer < ActiveModel::Serializer
+  class PostDetailSerializer < ActiveModel::Serializer
     attributes :id,
                :title,
-               :created_at
+               :description,
+               :created_at,
+               :updated_at
 
     belongs_to :user
     class UserSerializer < ActiveModel::Serializer

@@ -26,8 +26,9 @@ module V1
       # privateに投稿者ではないアクセスの場合、エラーを返す
       @post.status_private? && check_authorization
 
-      json_string = serialize_to_json(@post)
-      render json: json_string, status: :ok
+      render json: @post,
+             serializer: V1::PostDetailSerializer,
+             status: :ok
     end
 
     # 投稿を更新する
@@ -56,23 +57,39 @@ module V1
 
     # 最新投稿をピックアップ (publicのみ)
     def latest
-      posts = Post.status_public.order(created_at: :desc).limit(10)
-      json_string = serialize_to_json(posts)
-      render json: json_string, status: :ok
+      posts = Post.status_public
+        .order(created_at: :desc).limit(10)
+
+        render json: posts,
+               each_serializer: V1::PostSerializer,
+               status: :ok
     end
 
     # トレンド投稿をピックアップ (publicのみ)
     def trend
-      posts = Post.status_public.order(created_at: :desc).limit(10)
-      json_string = serialize_to_json(posts)
-      render json: json_string, status: :ok
+      scope = params[:scope]
+      posts = Post.status_public
+        .order(created_at: :desc).limit(10)
+
+      render json: posts,
+             each_serializer: V1::PostSerializer,
+             status: :ok
     end
 
     # 投稿を検索 (publicのみ)
     def search
-      posts = Post.status_public.order(created_at: :desc).limit(10)
-      json_string = serialize_to_json(posts)
-      render json: json_string, status: :ok
+      query = params[:query]
+      sort = params[:sort]
+      page = params[:page] || 1
+
+      posts = Post.status_public
+        .order(created_at: :desc)
+        .page(page).per(10)
+
+      render json: posts,
+             each_serializer: V1::PostSerializer,
+             meta: pagination_dict(posts),
+             status: :ok
     end
 
     private
@@ -88,16 +105,6 @@ module V1
 
     def post_params
       params.permit(:title, :description, :status)
-    end
-
-    def serialize_to_json(posts)
-      serializable_resource = ActiveModelSerializers::SerializableResource.new(
-        posts,
-        includes: '**',
-        each_serializer: V1::PostSerializer
-      )
-
-      serializable_resource.as_json
     end
   end
 end

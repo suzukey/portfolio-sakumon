@@ -1,6 +1,7 @@
 module V1
   class UserPostSerializer < ActiveModel::Serializer
-    attributes :title,
+    attributes :id,
+               :title,
                :status,
                :created_at
   end
