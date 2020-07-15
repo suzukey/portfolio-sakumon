@@ -3,6 +3,7 @@ class Question < ApplicationRecord
 
   enum status: { publish: 0, draft: 1 }, _prefix: true
 
+  has_many :choices, dependent: :destroy
   belongs_to :post, touch: true
 
   validates :statement,
