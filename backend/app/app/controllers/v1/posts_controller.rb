@@ -7,13 +7,7 @@ module V1
     # 編集・削除する権限があるかチェック
     before_action :check_authorization, only: [:update, :destroy]
 
-    # publicしか全体で表示しない
-    def index
-      posts = Post.status_public.order(created_at: :desc)
-      json_string = serialize_to_json(posts)
-      render json: json_string, status: :ok
-    end
-
+    # 投稿を作成
     def create
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
@@ -32,10 +26,12 @@ module V1
       # privateに投稿者ではないアクセスの場合、エラーを返す
       @post.status_private? && check_authorization
 
-      json_string = serialize_to_json(@post)
-      render json: json_string, status: :ok
+      render json: @post,
+             serializer: V1::PostDetailSerializer,
+             status: :ok
     end
 
+    # 投稿を更新する
     def update
       if @post.update(post_params)
         render status: :no_content
@@ -46,6 +42,7 @@ module V1
       end
     end
 
+    # 投稿を削除する
     def destroy
       if @post.destroy
         render status: :no_content
@@ -54,6 +51,57 @@ module V1
           data: @post.errors
         }, status: :bad_request
       end
+    end
+
+    # --リスト系--------------------------
+
+    # 最新投稿をピックアップ (publicのみ)
+    def latest
+      posts = Post.status_public
+                  .order(created_at: :desc)
+                  .limit(10)
+
+      render json: posts,
+             each_serializer: V1::PostSerializer,
+             status: :ok
+    end
+
+    # トレンド投稿をピックアップ (publicのみ)
+    def trend
+      # scope = params[:scope]
+
+      posts = Post.status_public
+                  .order(created_at: :desc)
+                  .limit(10)
+
+      render json: posts,
+             each_serializer: V1::PostSerializer,
+             status: :ok
+    end
+
+    # 投稿を検索 (publicのみ)
+    def search
+      query = params[:q]
+      # sort = params[:sort]
+      page = params[:page] || 1
+
+      split_keywords = query.split(' ')
+
+      posts = if not query.present?
+        Post.none
+      else
+        Post.status_public
+            .ransack(:title_or_description_cont_any => split_keywords)
+            .result
+      end
+
+      posts = posts.order(created_at: :desc)
+                   .page(page).per(10)
+
+      render json: posts,
+             each_serializer: V1::PostDetailSerializer,
+             meta: pagination_dict(posts),
+             status: :ok
     end
 
     private
@@ -69,17 +117,6 @@ module V1
 
     def post_params
       params.permit(:title, :description, :status)
-    end
-
-    def serialize_to_json(posts)
-      options = {
-        include: %i[user],
-        fields: {
-          post: %i[title description created_at updated_at user],
-          user: %i[name nickname]
-        }
-      }
-      PostSerializer.new(posts, options).serialized_json
     end
   end
 end

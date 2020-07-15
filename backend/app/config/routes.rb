@@ -5,12 +5,19 @@ Rails.application.routes.draw do
     }
 
     resources :users, param: :name, only: [:show] do
-      resources :posts,
-                controller: :user_posts,
-                only: [:index]
+      member do
+        get 'posts'
+      end
     end
-    resources :posts do
+
+    resources :posts, except: [:index] do
       resources :questions
+
+      collection do
+        get 'search'
+        get 'latest'
+        get 'trend'
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
