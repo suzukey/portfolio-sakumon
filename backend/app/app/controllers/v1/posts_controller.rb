@@ -91,7 +91,7 @@ module V1
         Post.none
       else
         Post.status_public
-            .search(:title_cont_any => split_keywords)
+            .ransack(:title_or_description_cont_any => split_keywords)
             .result
       end
 
@@ -99,7 +99,7 @@ module V1
                    .page(page).per(10)
 
       render json: posts,
-             each_serializer: V1::PostSerializer,
+             each_serializer: V1::PostDetailSerializer,
              meta: pagination_dict(posts),
              status: :ok
     end
