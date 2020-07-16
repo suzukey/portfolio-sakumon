@@ -85,16 +85,7 @@ module V1
       # sort = params[:sort]
       page = params[:page] || 1
 
-      split_keywords = query.split(' ')
-
-      posts = if not query.present?
-        Post.none
-      else
-        Post.status_public
-            .ransack(:title_or_description_cont_any => split_keywords)
-            .result
-      end
-
+      posts = search_post(query)
       posts = posts.order(created_at: :desc)
                    .page(page).per(10)
 
@@ -117,6 +108,30 @@ module V1
 
     def post_params
       params.permit(:title, :description, :status)
+    end
+
+    def search_post(query)
+      # queryが空でなかったら検索を行う
+      if query.present?
+        keywords = query.split(/[[:space:]]/)
+
+        # 全ての検索ワードがタイトルか本文に含まれるかの検索クエリを作成
+        grouping_hash = {}
+        keywords.each_with_index do |word, idx|
+          grouping_hash.update({ "#{idx}": { title_or_description_cont: word } })
+        end
+
+        q = {
+          conbinator: 'and',
+          groupings: grouping_hash
+        }
+
+        Post.status_public
+            .ransack(q)
+            .result
+      else
+        Post.none
+      end
     end
   end
 end
