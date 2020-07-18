@@ -12,7 +12,9 @@ module V1
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
       if post.save
-        render status: :created
+        render json: {
+          post: { id: post.id }
+        }, status: :created
       else
         render json: {
           data: post.errors

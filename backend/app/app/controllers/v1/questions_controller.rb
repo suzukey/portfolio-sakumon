@@ -16,9 +16,10 @@ module V1
     # 編集のための一覧
     def index
       questions = @post.questions
-      json_string = serialize_to_json(questions)
 
-      render json: json_string, status: :ok
+      render json: questions,
+             each_serializer: V1::QuestionSerializer,
+             status: :ok
     end
 
     # 問題の作成
@@ -37,7 +38,7 @@ module V1
     # 問題の詳細閲覧
     def show
       render json: @question,
-             serializer: V1::QuestionSerializer,
+             serializer: V1::QuestionChoiceSerializer,
              status: :ok
     end
 
