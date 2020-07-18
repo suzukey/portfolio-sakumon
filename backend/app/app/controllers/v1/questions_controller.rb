@@ -1,5 +1,7 @@
 module V1
   class QuestionsController < ApplicationController
+    # すべてのアクションに投稿者のみアクセス可
+
     # ログイン時のみアクセスを許可
     before_action :authenticate_v1_user!
 

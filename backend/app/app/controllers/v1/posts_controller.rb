@@ -66,6 +66,7 @@ module V1
              status: :ok
     end
 
+    # TODO: incomplete
     # トレンド投稿をピックアップ (publicのみ)
     def trend
       # scope = params[:scope]
