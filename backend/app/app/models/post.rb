@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   validates :title,
             presence: true,
             length: { maximum: 48 }
-  validates :description,
+  validates :body,
             length: { maximum: 150 }
   validates :status,
             presence: true

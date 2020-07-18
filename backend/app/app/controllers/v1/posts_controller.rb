@@ -12,7 +12,9 @@ module V1
       post = Post.new(post_params)
       post.user_id = current_v1_user.id
       if post.save
-        render status: :created
+        render json: {
+          post: { id: post.id }
+        }, status: :created
       else
         render json: {
           data: post.errors
@@ -66,6 +68,7 @@ module V1
              status: :ok
     end
 
+    # TODO: incomplete
     # トレンド投稿をピックアップ (publicのみ)
     def trend
       # scope = params[:scope]
@@ -107,7 +110,7 @@ module V1
     end
 
     def post_params
-      params.permit(:title, :description, :status)
+      params.permit(:title, :body, :status)
     end
 
     def search_post(query)
@@ -118,7 +121,7 @@ module V1
         # 全ての検索ワードがタイトルか本文に含まれるかの検索クエリを作成
         grouping_hash = {}
         keywords.each_with_index do |word, idx|
-          grouping_hash.update({ "#{idx}": { title_or_description_cont: word } })
+          grouping_hash.update({ "#{idx}": { title_or_body_cont: word } })
         end
 
         q = {

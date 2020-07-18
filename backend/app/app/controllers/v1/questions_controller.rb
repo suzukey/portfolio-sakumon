@@ -1,5 +1,7 @@
 module V1
   class QuestionsController < ApplicationController
+    # すべてのアクションに投稿者のみアクセス可
+
     # ログイン時のみアクセスを許可
     before_action :authenticate_v1_user!
 
@@ -14,9 +16,10 @@ module V1
     # 編集のための一覧
     def index
       questions = @post.questions
-      json_string = serialize_to_json(questions)
 
-      render json: json_string, status: :ok
+      render json: questions,
+             each_serializer: V1::QuestionSerializer,
+             status: :ok
     end
 
     # 問題の作成
@@ -35,7 +38,7 @@ module V1
     # 問題の詳細閲覧
     def show
       render json: @question,
-             serializer: V1::QuestionSerializer,
+             serializer: V1::QuestionChoiceSerializer,
              status: :ok
     end
 
@@ -77,7 +80,7 @@ module V1
     end
 
     def post_params
-      params.permit(:statement)
+      params.permit(:body)
     end
   end
 end

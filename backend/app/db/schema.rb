@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_114410) do
+ActiveRecord::Schema.define(version: 2020_07_15_142856) do
+
+  create_table "choices", id: :string, force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.string "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
 
   create_table "posts", id: :string, force: :cascade do |t|
     t.string "user_id", null: false
     t.string "title", null: false
-    t.text "description"
+    t.text "body"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -24,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_114410) do
 
   create_table "questions", id: :string, force: :cascade do |t|
     t.string "post_id", null: false
-    t.text "statement", null: false
+    t.text "body", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -48,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_114410) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "choices", "questions"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "posts"
 end
