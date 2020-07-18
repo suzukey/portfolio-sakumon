@@ -1,7 +1,7 @@
 module V1
   class QuestionSerializer < ActiveModel::Serializer
     attributes :id,
-               :statement,
+               :body,
                :status
 
     belongs_to :post

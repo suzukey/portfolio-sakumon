@@ -2,7 +2,7 @@ module V1
   class PostDetailSerializer < ActiveModel::Serializer
     attributes :id,
                :title,
-               :description,
+               :body,
                :created_at,
                :updated_at
 

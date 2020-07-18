@@ -77,7 +77,7 @@ module V1
     end
 
     def post_params
-      params.permit(:statement)
+      params.permit(:body)
     end
   end
 end

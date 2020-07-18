@@ -6,7 +6,7 @@ class Question < ApplicationRecord
   has_many :choices, dependent: :destroy
   belongs_to :post, touch: true
 
-  validates :statement,
+  validates :body,
             presence: true
   validates :status,
             presence: true
