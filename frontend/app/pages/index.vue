@@ -25,7 +25,7 @@
 import MyHeader from '~/components/common/Header.vue'
 import MyFooter from '~/components/common/Footer.vue'
 import ScrollToTop from '~/components/common/ScrollToTop.vue'
-import HomeAbout from '~/components/HomeAbout.vue'
+import HomeAbout from '~/components/common/HomeAbout.vue'
 import LatestPosts from '~/components/posts/LatestPosts.vue'
 import TrendPosts from '~/components/posts/TrendPosts.vue'
 
