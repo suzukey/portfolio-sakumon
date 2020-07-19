@@ -18,9 +18,15 @@ export default {
   components: {
     PostsList,
   },
+  async fetch() {
+    const url = 'api/v1/posts/latest'
+    const response = await this.$axios.$get(url)
+    this.posts = response.posts
+    this.loading = false
+  },
   data() {
     return {
-      posts: {},
+      posts: [],
       loading: true,
     }
   },

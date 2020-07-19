@@ -27,10 +27,32 @@ export default {
   components: {
     PostsList,
   },
+  async fetch() {
+    let trendScope = this.$route.query.scope
+
+    // ロゴをクリックされた時を想定
+    if (!trendScope && this.tab !== 0) {
+      this.tab = 0
+      return
+    }
+    // 直リンクや再読み込みを想定
+    if (process.server && trendScope) {
+      this.tab = this.getTabNum(trendScope)
+    }
+
+    trendScope = this.trends[this.tab].tab
+
+    let url = 'api/v1/posts/trend?'
+    url += 'scope=' + trendScope || ''
+    const response = await this.$axios.$get(url)
+    this.posts = response.posts
+    this.loading = false
+  },
   data() {
     return {
-      posts: {},
+      posts: [],
       loading: true,
+      firstLoad: true,
       tab: 0,
       trends: [
         { tab: 'day', name: 'Day' },
@@ -40,6 +62,26 @@ export default {
         { tab: 'all', name: 'All' },
       ],
     }
+  },
+  watch: {
+    '$route.query': '$fetch',
+    tab() {
+      if (this.tab === 0) {
+        this.$router.replace({ query: {} }).catch(() => {})
+      } else {
+        const trendScope = this.trends[this.tab].tab
+        this.$router.replace({ query: { scope: trendScope } }).catch(() => {})
+      }
+    },
+  },
+  methods: {
+    getTabNum(scope) {
+      let tabNum = this.trends.findIndex((trend) => trend.tab === scope)
+      if (tabNum < 0 && tabNum > this.trends.length) {
+        tabNum = 0
+      }
+      return tabNum
+    },
   },
 }
 </script>

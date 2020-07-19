@@ -36,7 +36,7 @@ export default {
   },
   props: {
     posts: {
-      type: Object,
+      type: Array,
       required: true,
     },
     loading: {
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     existPosts() {
-      return this.posts.data
+      return this.posts.length > 0
     },
   },
 }
