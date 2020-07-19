@@ -1,23 +1,11 @@
 <template>
   <v-list-item class="py-1">
-    <v-list-item-avatar>
-      <v-icon class="grey white--text">mdi-account</v-icon>
-    </v-list-item-avatar>
-
     <v-list-item-content>
       <nuxt-link :to="`/posts/${post.id}`" class="post-title">
         <v-list-item-title>
           {{ post.title }}
         </v-list-item-title>
       </nuxt-link>
-      <v-list-item-subtitle>
-        <span>
-          <span>by</span>
-          <nuxt-link :to="`/users/${post.user.name}`" class="post-author">
-            {{ post.user.nickname }}
-          </nuxt-link>
-        </span>
-      </v-list-item-subtitle>
       <v-list-item-subtitle v-if="post.tags" class="my-2">
         <v-slide-group class="post-tags">
           <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">

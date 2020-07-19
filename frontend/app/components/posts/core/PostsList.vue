@@ -11,7 +11,14 @@
     <template v-else-if="existPosts">
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
         <v-divider></v-divider>
-        <posts-list-item :post="post"></posts-list-item>
+        <template v-if="existUserInfo">
+          <posts-list-item :post="post"></posts-list-item>
+        </template>
+        <template v-else>
+          <posts-list-item-exclude-user
+            :post="post"
+          ></posts-list-item-exclude-user>
+        </template>
       </div>
     </template>
     <template v-else>
@@ -29,10 +36,12 @@
 
 <script>
 import PostsListItem from '~/components/posts/core/PostsListItem.vue'
+import PostsListItemExcludeUser from '~/components/posts/core/PostsListItemExcludeUser.vue'
 
 export default {
   components: {
     PostsListItem,
+    PostsListItemExcludeUser,
   },
   props: {
     posts: {
@@ -43,10 +52,14 @@ export default {
       type: Boolean,
       required: true,
     },
+    existUserInfo: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     existPosts() {
-      return this.posts.length > 0
+      return this.posts && this.posts.length > 0
     },
   },
 }
