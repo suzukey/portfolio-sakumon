@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       user: {},
-      posts: {},
+      posts: { posts: [] },
       loading: true,
     }
   },
