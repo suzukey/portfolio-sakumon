@@ -36,26 +36,19 @@
       >
         <span class="font-weight-bold text-subtitle-1">登録する</span>
       </v-btn>
-      <v-btn
-        type="submit"
-        block
-        color="primary"
-        outlined
-        x-large
-        class="mb-5 mt-2"
-      >
-        <span class="font-weight-bold text-subtitle-1">かんたんログイン</span>
-      </v-btn>
+      <easy-login />
     </v-form>
   </v-card-text>
 </template>
 
 <script>
 import PageSelector from '~/components/auth/PageSelector.vue'
+import EasyLogin from '~/components/auth/EasyLogin.vue'
 
 export default {
   components: {
     PageSelector,
+    EasyLogin,
   },
   data() {
     return {
