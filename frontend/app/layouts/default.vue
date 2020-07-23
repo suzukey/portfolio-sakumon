@@ -13,6 +13,7 @@ import MyFooter from '~/components/common/Footer.vue'
 import ScrollToTop from '~/components/common/ScrollToTop.vue'
 
 export default {
+  name: 'Default',
   components: {
     MyHeader,
     MyFooter,

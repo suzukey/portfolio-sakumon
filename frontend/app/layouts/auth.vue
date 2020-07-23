@@ -31,6 +31,12 @@
   </v-app>
 </template>
 
+<script>
+export default {
+  name: 'Auth',
+}
+</script>
+
 <style scoped>
 .title a {
   color: inherit;
