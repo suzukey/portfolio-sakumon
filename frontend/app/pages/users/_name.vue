@@ -30,6 +30,7 @@
                 :posts="posts.posts"
                 :loading="loading"
                 :exist-user-info="false"
+                no-records="投稿がありません"
               ></posts-list>
             </v-list>
           </v-card>

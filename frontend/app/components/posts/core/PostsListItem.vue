@@ -1,36 +1,33 @@
 <template>
-  <v-list-item class="py-1">
-    <v-list-item-avatar>
-      <v-icon class="grey white--text">mdi-account</v-icon>
+  <v-list-item
+    nuxt
+    class="post-list-item py-1"
+    @click="$router.push({ path: `/posts/${post.id}` })"
+  >
+    <v-list-item-avatar v-if="showUserInfo">
+      <nuxt-link :to="`/users/${post.user.name}`" class="post-icon">
+        <v-avatar color="grey">
+          <v-icon class="white--text">mdi-account</v-icon>
+        </v-avatar>
+      </nuxt-link>
     </v-list-item-avatar>
 
     <v-list-item-content>
-      <nuxt-link :to="`/posts/${post.id}`" class="post-title">
-        <v-list-item-title>
+      <v-list-item-title>
+        <nuxt-link :to="`/posts/${post.id}`" class="post-title">
           {{ post.title }}
-        </v-list-item-title>
-      </nuxt-link>
-      <v-list-item-subtitle>
-        <span>
-          <span>by</span>
-          <nuxt-link :to="`/users/${post.user.name}`" class="post-author">
-            {{ post.user.nickname }}
-          </nuxt-link>
-        </span>
+        </nuxt-link>
+      </v-list-item-title>
+      <v-list-item-subtitle v-if="showUserInfo">
+        <span>by</span>
+        <nuxt-link :to="`/users/${post.user.name}`" class="post-author">
+          {{ post.user.nickname }}
+        </nuxt-link>
       </v-list-item-subtitle>
       <v-list-item-subtitle v-if="post.tags" class="my-2">
         <v-slide-group class="post-tags">
           <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
             Default
-          </v-chip>
-          <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
-            国語
-          </v-chip>
-          <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
-            漢字
-          </v-chip>
-          <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
-            漢検2級
           </v-chip>
           <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
             Test
@@ -59,18 +56,22 @@ export default {
       type: Object,
       required: true,
     },
+    showUserInfo: {
+      type: Boolean,
+      default: true,
+    },
   },
 }
 </script>
 
 <style scoped>
+.post-icon,
 .post-title,
 .post-author {
   color: inherit;
   text-decoration: none;
 }
 
-.post-title:hover,
 .post-author:hover {
   text-decoration: underline;
 }
