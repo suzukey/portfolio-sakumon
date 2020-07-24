@@ -24,21 +24,12 @@ export const mutations = {
   },
 }
 
-const credentialKeys = ['access-token', 'client', 'uid']
-const pickCredential = (obj) =>
-  Object.fromEntries(
-    Object.entries(obj).filter(([key]) => credentialKeys.includes(key))
-  )
-
 export const actions = {
   async login({ commit }, payload) {
     await this.$axios
       .post('/api/v1/auth/sign_in', payload)
       .then((res) => {
-        const headers = res.headers
-        const credential = pickCredential(headers)
-
-        commit('login', credential)
+        loginProcess(commit, res)
         this.$router.push('/')
       })
       .catch(() => {})
@@ -48,10 +39,7 @@ export const actions = {
     await this.$axios
       .post('/api/v1/auth', payload)
       .then((res) => {
-        const headers = res.headers
-        const credential = pickCredential(headers)
-
-        commit('login', credential)
+        loginProcess(commit, res)
         this.$router.push('/')
       })
       .catch(() => {})
@@ -62,8 +50,24 @@ export const actions = {
       .$delete('/api/v1/auth/sign_out')
       .then(() => {
         commit('logout')
+        commit('user/revertUserInfo', { root: true })
         this.$router.push('/')
       })
       .catch(() => {})
   },
+}
+
+// 独自
+const credentialKeys = ['access-token', 'client', 'uid']
+const userInfoKeys = ['name', 'nickname', 'iconUrl']
+
+const pickObject = (obj, keys) =>
+  Object.fromEntries(Object.entries(obj).filter(([key]) => keys.includes(key)))
+
+const loginProcess = (commit, res) => {
+  const credential = pickObject(res.headers, credentialKeys)
+  const userInfo = pickObject(res.data.data, userInfoKeys)
+
+  commit('login', credential)
+  commit('user/setUserInfo', userInfo, { root: true })
 }

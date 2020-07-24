@@ -40,7 +40,8 @@ export default {
   },
   computed: {
     isShowAbout() {
-      return true
+      // 認証前のみ表示する
+      return !this.$store.getters['auth/isAuthenticated']
     },
   },
   head() {
