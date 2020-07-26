@@ -5,7 +5,11 @@
     @click="$router.push({ path: `/posts/${post.id}` })"
   >
     <v-list-item-avatar v-if="showUserInfo">
-      <nuxt-link :to="`/users/${post.user.name}`" class="post-icon">
+      <nuxt-link
+        :to="`/users/${post.user.name}`"
+        class="post-icon"
+        @click.native.stop
+      >
         <v-avatar color="grey">
           <v-icon class="white--text">mdi-account</v-icon>
         </v-avatar>
@@ -14,22 +18,42 @@
 
     <v-list-item-content>
       <v-list-item-title>
-        <nuxt-link :to="`/posts/${post.id}`" class="post-title">
+        <nuxt-link
+          :to="`/posts/${post.id}`"
+          class="post-title"
+          @click.native.stop
+        >
           {{ post.title }}
         </nuxt-link>
       </v-list-item-title>
       <v-list-item-subtitle v-if="showUserInfo">
         <span>by</span>
-        <nuxt-link :to="`/users/${post.user.name}`" class="post-author">
+        <nuxt-link
+          :to="`/users/${post.user.name}`"
+          class="post-author"
+          @click.native.stop
+        >
           {{ post.user.nickname }}
         </nuxt-link>
       </v-list-item-subtitle>
       <v-list-item-subtitle v-if="post.tags" class="my-2">
         <v-slide-group class="post-tags">
-          <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
+          <v-chip
+            small
+            class="mr-1 post-tag"
+            nuxt
+            to="/tags/name"
+            @click.native.stop
+          >
             Default
           </v-chip>
-          <v-chip small class="mr-1 post-tag" nuxt to="/tags/name">
+          <v-chip
+            small
+            class="mr-1 post-tag"
+            nuxt
+            to="/tags/name"
+            @click.native.stop
+          >
             Test
           </v-chip>
         </v-slide-group>
