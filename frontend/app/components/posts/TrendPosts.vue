@@ -13,7 +13,10 @@
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="trend in trends" :key="trend.tab">
-          <posts-list :posts="posts" :loading="loading"></posts-list>
+          <posts-list
+            :posts="posts[trend.tab].data"
+            :loading="posts[trend.tab].loading"
+          ></posts-list>
         </v-tab-item>
       </v-tabs-items>
     </v-list>
@@ -45,14 +48,17 @@ export default {
     let url = 'api/v1/posts/trend?'
     url += 'scope=' + trendScope || ''
     const response = await this.$axios.$get(url)
-    this.posts = response.posts
-    this.loading = false
+    this.posts[trendScope] = { data: response.posts, loading: false }
   },
   data() {
     return {
-      posts: [],
-      loading: true,
-      firstLoad: true,
+      posts: {
+        day: { data: [], loading: true },
+        week: { data: [], loading: true },
+        month: { data: [], loading: true },
+        year: { data: [], loading: true },
+        all: { data: [], loading: true },
+      },
       tab: 0,
       trends: [
         { tab: 'day', name: 'Day' },
