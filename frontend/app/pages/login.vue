@@ -29,16 +29,7 @@
       >
         <span class="font-weight-bold text-subtitle-1">ログイン</span>
       </v-btn>
-      <v-btn
-        type="submit"
-        block
-        color="primary"
-        outlined
-        x-large
-        class="mb-0 mt-2"
-      >
-        <span class="font-weight-bold text-subtitle-1">かんたんログイン</span>
-      </v-btn>
+      <easy-login />
       <p class="forgot text-right mb-0 mt-5">
         <nuxt-link to="forgot-password">パスワードを忘れた場合</nuxt-link>
       </p>
@@ -48,10 +39,12 @@
 
 <script>
 import PageSelector from '~/components/auth/PageSelector.vue'
+import EasyLogin from '~/components/auth/EasyLogin.vue'
 
 export default {
   components: {
     PageSelector,
+    EasyLogin,
   },
   data() {
     return {

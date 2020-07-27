@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'Error',
   props: {
     error: {
       type: Object,

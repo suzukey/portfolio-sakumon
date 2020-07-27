@@ -24,7 +24,7 @@
       </v-btn>
 
       <template v-if="isAuthenticated">
-        <v-btn icon>
+        <v-btn icon nuxt to="/edit">
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
 
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AccountMenu from '~/components/common/AccountMenu.vue'
 
 export default {
@@ -77,9 +78,7 @@ export default {
     }
   },
   computed: {
-    isAuthenticated() {
-      return false
-    },
+    ...mapGetters('auth', ['isAuthenticated']),
   },
   methods: {
     toggleSearch() {

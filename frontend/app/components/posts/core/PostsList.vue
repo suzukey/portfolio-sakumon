@@ -11,7 +11,10 @@
     <template v-else-if="existPosts">
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
         <v-divider></v-divider>
-        <posts-list-item :post="post"></posts-list-item>
+        <posts-list-item
+          :show-user-info="existUserInfo"
+          :post="post"
+        ></posts-list-item>
       </div>
     </template>
     <template v-else>
@@ -19,7 +22,7 @@
         <v-divider></v-divider>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>該当なし</v-list-item-title>
+            <v-list-item-title>{{ noRecords }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </div>
@@ -36,17 +39,25 @@ export default {
   },
   props: {
     posts: {
-      type: Object,
+      type: Array,
       required: true,
     },
     loading: {
       type: Boolean,
       required: true,
     },
+    existUserInfo: {
+      type: Boolean,
+      default: true,
+    },
+    noRecords: {
+      type: String,
+      default: '該当なし',
+    },
   },
   computed: {
     existPosts() {
-      return this.posts.data
+      return this.posts && this.posts.length > 0
     },
   },
 }
