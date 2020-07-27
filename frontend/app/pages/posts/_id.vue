@@ -35,15 +35,23 @@
 
 <script>
 export default {
-  async fetch() {
-    const postId = this.$route.params.id
+  async asyncData({ $axios, params, error }) {
+    const postId = params.id
+    const postUrl = `api/v1/posts/${postId}`
 
-    let postUrl = 'api/v1/posts/'
-    postUrl += postId
-    const response = await this.$axios.$get(postUrl)
-    this.post = response.post
+    try {
+      const response = await $axios.$get(postUrl)
 
-    this.loading = false
+      const post = response.post
+      const loading = false
+
+      return { post, loading }
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message,
+      })
+    }
   },
   data() {
     return {

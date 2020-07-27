@@ -27,11 +27,12 @@
                 <span>投稿一覧</span>
               </v-subheader>
               <posts-list
-                :posts="posts.posts"
+                :posts="posts"
                 :loading="loading"
                 :exist-user-info="false"
                 no-records="投稿がありません"
               ></posts-list>
+              <pagination :length="totalPages" :page="currentPage"></pagination>
             </v-list>
           </v-card>
         </v-col>
@@ -42,33 +43,52 @@
 
 <script>
 import PostsList from '~/components/posts/core/PostsList.vue'
+import Pagination from '~/components/posts/core/Pagination.vue'
 
 export default {
   components: {
     PostsList,
+    Pagination,
   },
-  async fetch() {
-    const userName = this.$route.params.name
+  async asyncData({ $axios, params, query, error }) {
+    const username = params.name
 
-    let userUrl = 'api/v1/users/'
-    userUrl += userName
-    const userResponse = await this.$axios.$get(userUrl)
-    this.user = userResponse.user
+    const userUrl = `/api/v1/users/${username}`
+    let postsUrl = `/api/v1/users/${username}/posts`
+    postsUrl += '?page=' + query.page || '1'
 
-    let postsUrl = 'api/v1/users/'
-    postsUrl += userName
-    postsUrl += '/posts'
-    const postsResponse = await this.$axios.$get(postsUrl)
-    this.posts = postsResponse
+    try {
+      const userResponse = await $axios.$get(userUrl)
+      const postsResponse = await $axios.$get(postsUrl)
 
-    this.loading = false
+      const user = userResponse.user
+      const posts = postsResponse.posts
+      const totalPages = postsResponse.meta.total_pages
+      const currentPage = postsResponse.meta.current_page
+      const loading = false
+
+      return { user, posts, totalPages, currentPage, loading }
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message,
+      })
+    }
   },
   data() {
     return {
       user: {},
-      posts: { posts: [] },
+      posts: [],
+      totalPages: 1,
+      currentPage: 1,
       loading: true,
     }
   },
+  head() {
+    return {
+      title: this.user.nickname,
+    }
+  },
+  watchQuery: ['page'],
 }
 </script>
