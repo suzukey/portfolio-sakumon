@@ -68,14 +68,19 @@ module V1
              status: :ok
     end
 
-    # TODO: incomplete
+    # TODO: LIKEの数等でピックアップ
     # トレンド投稿をピックアップ (publicのみ)
     def trend
-      # scope = params[:scope]
+      scope = params[:scope] || 'day'
+      diff = scope_diff(scope)
 
       posts = Post.status_public
-                  .order(created_at: :desc)
-                  .limit(10)
+      if diff
+        to = Time.current
+        from = to - diff
+        posts = posts.where(created_at: from...to)
+      end
+      posts = posts.order(created_at: :desc).limit(10)
 
       render json: posts,
              each_serializer: V1::PostSerializer,
@@ -111,6 +116,17 @@ module V1
 
     def post_params
       params.permit(:title, :body, :status)
+    end
+
+    def scope_diff(scope)
+      scopes = {
+        day: 1.day,
+        week: 1.week,
+        month: 1.month,
+        year: 1.year,
+        all: false
+      }
+      scopes.key?(scope) ? scopes[scope] : false
     end
 
     def search_post(query)
