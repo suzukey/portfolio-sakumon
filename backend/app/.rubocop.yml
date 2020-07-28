@@ -36,6 +36,12 @@ Metrics/MethodLength:
   Exclude:
     - "db/migrate/*.rb"
 
+# 1クラスが120行を超えない
+Metrics/ClassLength:
+  Max: 120
+  Exclude:
+    - "db/migrate/*.rb"
+
 # デフォルトの6は強すぎるので緩める
 Metrics/CyclomaticComplexity:
   Max: 10
