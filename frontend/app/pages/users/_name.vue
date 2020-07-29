@@ -55,7 +55,7 @@ export default {
 
     const userUrl = `/api/v1/users/${username}`
     let postsUrl = `/api/v1/users/${username}/posts`
-    postsUrl += '?page=' + query.page || '1'
+    postsUrl += '?page=' + (query.page || '1')
 
     try {
       const userResponse = await $axios.$get(userUrl)
