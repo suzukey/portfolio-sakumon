@@ -46,7 +46,7 @@ export default {
     trendScope = this.trends[this.tab].tab
 
     let url = 'api/v1/posts/trend?'
-    url += 'scope=' + trendScope || ''
+    url += 'scope=' + (trendScope || '')
     const response = await this.$axios.$get(url)
     this.posts[trendScope] = { data: response.posts, loading: false }
   },

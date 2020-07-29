@@ -37,8 +37,8 @@ export default {
   },
   async asyncData({ $axios, query, error }) {
     let url = 'api/v1/posts/search'
-    url += '?q=' + query.q || ''
-    url += '&page=' + query.page || '1'
+    url += '?q=' + (query.q || '')
+    url += '&page=' + (query.page || '1')
 
     try {
       const response = await $axios.$get(url)
