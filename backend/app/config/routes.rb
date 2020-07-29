@@ -5,6 +5,10 @@ Rails.application.routes.draw do
         registrations: 'v1/auth/registrations'
       }
 
+      scope :me do
+        get 'posts', to: 'me#posts'
+      end
+
       resources :users, param: :name, only: [:show] do
         member do
           get 'posts'
