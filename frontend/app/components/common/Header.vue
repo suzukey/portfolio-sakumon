@@ -19,23 +19,25 @@
 
       <v-spacer />
 
-      <v-btn icon @click="toggleSearch">
+      <v-btn icon class="ml-1" @click="toggleSearch">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
       <template v-if="isAuthenticated">
-        <v-btn icon nuxt to="/edit">
+        <v-btn icon nuxt to="/edit" class="ml-1">
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
 
         <account-menu></account-menu>
       </template>
       <template v-else>
-        <v-btn text nuxt to="/login">ログイン</v-btn>
+        <v-btn text nuxt to="/login" class="ml-1">ログイン</v-btn>
 
-        <v-btn outlined nuxt to="/register">新規登録</v-btn>
+        <v-btn outlined nuxt to="/register" class="ml-1">新規登録</v-btn>
       </template>
+      <div class="pa-0 ma-0"></div>
     </template>
+    <!-- 検索バー表示 -->
     <template v-else>
       <v-btn icon class="mr-2" @click="toggleSearch">
         <v-icon>mdi-arrow-left</v-icon>

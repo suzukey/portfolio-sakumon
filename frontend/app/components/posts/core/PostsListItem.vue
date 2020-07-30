@@ -10,8 +10,8 @@
         class="post-icon"
         @click.native.stop
       >
-        <v-avatar color="grey">
-          <v-icon class="white--text">mdi-account</v-icon>
+        <v-avatar color="grey" size="40">
+          <user-icon :icon-url="post.user.iconUrl" />
         </v-avatar>
       </nuxt-link>
     </v-list-item-avatar>
@@ -74,7 +74,12 @@
 </template>
 
 <script>
+import UserIcon from '~/components/common/UserIcon.vue'
+
 export default {
+  components: {
+    UserIcon,
+  },
   props: {
     post: {
       type: Object,

@@ -1,10 +1,9 @@
 <template>
   <v-menu offset-y>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn icon v-bind="attrs" v-on="on">
-        <v-avatar color="gray" size="48">
-          <img v-if="iconUrl" :src="iconUrl" alt="Icon" />
-          <v-icon v-else dark>mdi-account-circle</v-icon>
+      <v-btn icon v-bind="attrs" class="ml-1" v-on="on">
+        <v-avatar color="gray" size="36">
+          <user-icon :icon-url="iconUrl" />
         </v-avatar>
       </v-btn>
     </template>
@@ -16,7 +15,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item nuxt to="/mypage">
+        <v-list-item nuxt :to="`/users/${name}`">
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
@@ -61,8 +60,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import UserIcon from '~/components/common/UserIcon.vue'
 
 export default {
+  components: {
+    UserIcon,
+  },
   computed: {
     ...mapGetters('user', ['name', 'nickname', 'iconUrl']),
   },

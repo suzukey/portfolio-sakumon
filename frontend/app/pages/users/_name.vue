@@ -5,8 +5,8 @@
         <v-col>
           <v-card class="py-2">
             <v-list-item>
-              <v-list-item-avatar size="50">
-                <v-icon large class="grey white--text">mdi-account</v-icon>
+              <v-list-item-avatar size="50" class="gray">
+                <user-icon :icon-url="user.iconUrl" />
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -44,11 +44,13 @@
 <script>
 import PostsList from '~/components/posts/core/PostsList.vue'
 import Pagination from '~/components/posts/core/Pagination.vue'
+import UserIcon from '~/components/common/UserIcon.vue'
 
 export default {
   components: {
     PostsList,
     Pagination,
+    UserIcon,
   },
   async asyncData({ $axios, params, query, error }) {
     const username = params.name
