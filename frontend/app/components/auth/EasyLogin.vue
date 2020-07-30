@@ -30,7 +30,7 @@ export default {
       const credential = {}
       credential.name = userId
       credential.email = userId + '@example.com'
-      credential.nickname = this.getRandomNickname()
+      credential.nickname = userId
       credential.password = this.randomString(8)
 
       return credential
@@ -39,36 +39,6 @@ export default {
       return Math.random()
         .toString(36)
         .slice(-1 * length)
-    },
-
-    getRandomNickname() {
-      const nameList = [
-        'サトシ',
-        'さとし',
-        'マモル',
-        'まもる',
-        'ユウキ',
-        'ゆうき',
-        'ノゾミ',
-        'のぞみ',
-        'ヒカリ',
-        'ひかり',
-        'コダマ',
-        'こだま',
-      ]
-
-      const randomPick = (randArray) => {
-        let picked = ''
-        const arrayLength = randArray.length
-        if (arrayLength > 0) {
-          const randomIndex = Math.floor(Math.random() * arrayLength)
-          picked = randArray[randomIndex]
-        }
-        return picked
-      }
-
-      const nickname = randomPick(nameList) || 'User'
-      return nickname
     },
   },
 }
