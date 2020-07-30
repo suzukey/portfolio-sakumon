@@ -18,10 +18,10 @@ export default {
 
 <style scoped>
 .icon {
+  display: flex;
   width: inherit;
   height: inherit;
-}
-.icon img {
-  object-fit: contain;
+  justify-content: center;
+  align-items: center;
 }
 </style>
