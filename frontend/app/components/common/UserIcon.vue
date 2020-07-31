@@ -1,7 +1,7 @@
 <template>
   <div class="icon">
     <img :src="iconUrl" alt="UserIcon" />
-    <v-overlay absolute color="rgba(255, 255, 255, 0)"></v-overlay>
+    <v-overlay absolute color="rgba(255, 255, 255, 0)" z-index="1"></v-overlay>
   </div>
 </template>
 
