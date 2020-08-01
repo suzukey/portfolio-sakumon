@@ -36,9 +36,17 @@ export default {
       return credential
     },
     randomString(length) {
-      return Math.random()
-        .toString(36)
-        .slice(-1 * length)
+      const c = 'a'.charCodeAt(0)
+      const alphabets = Array.apply(null, new Array(26)).map((v, i) => {
+        return String.fromCharCode(c + i)
+      })
+      let rand = ''
+      while (rand.length < length) {
+        const randIndex = Math.floor(Math.random() * alphabets.length)
+        const randChar = alphabets[randIndex]
+        rand = rand + randChar
+      }
+      return rand
     },
   },
 }
