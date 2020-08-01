@@ -6,7 +6,7 @@
           <v-card v-if="!loading" class="py-2">
             <v-list-item nuxt :to="`/users/${post.user.name}`">
               <v-list-item-avatar>
-                <v-icon class="grey white--text">mdi-account</v-icon>
+                <user-icon :icon-url="post.user.iconUrl" />
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -34,7 +34,12 @@
 </template>
 
 <script>
+import UserIcon from '~/components/common/UserIcon.vue'
+
 export default {
+  components: {
+    UserIcon,
+  },
   async asyncData({ $axios, params, error }) {
     const postId = params.id
     const postUrl = `api/v1/posts/${postId}`

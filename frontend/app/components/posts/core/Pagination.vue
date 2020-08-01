@@ -9,7 +9,15 @@
           :total-visible="7"
         ></v-pagination>
       </div>
-      <div class="d-block d-sm-none"></div>
+      <div class="d-block d-sm-none">
+        <v-btn icon :disabled="canMove.prev" @click="currentPage--">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        <span class="mx-1">{{ currentPage }} / {{ length }}</span>
+        <v-btn icon :disabled="canMove.next" @click="currentPage++">
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </div>
     </v-list-item-content>
   </div>
 </template>
@@ -34,6 +42,11 @@ export default {
   computed: {
     showPagination() {
       return isFinite(this.length) && this.length > 0
+    },
+    canMove() {
+      const canPrev = this.currentPage > 1
+      const canNext = this.currentPage < this.length
+      return { prev: !canPrev, next: !canNext }
     },
   },
   watch: {
