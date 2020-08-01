@@ -24,7 +24,7 @@
       </v-btn>
 
       <template v-if="isAuthenticated">
-        <v-btn icon nuxt to="/edit" class="ml-1">
+        <v-btn icon nuxt to="/posts/me" class="ml-1">
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
 

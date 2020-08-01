@@ -16,11 +16,6 @@
             </v-row>
             <v-card-text>
               <v-text-field
-                v-model="user.name"
-                label="ユーザー名"
-                :counter="16"
-              />
-              <v-text-field
                 v-model="user.nickname"
                 label="ニックネーム"
                 :counter="32"

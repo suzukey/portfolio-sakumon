@@ -12,7 +12,9 @@
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
         <v-divider></v-divider>
         <posts-list-item
-          :show-user-info="existUserInfo"
+          :show-user-info="showUserInfo"
+          :show-status="showStatus"
+          :show-edit="showEdit"
           :post="post"
         ></posts-list-item>
       </div>
@@ -46,9 +48,17 @@ export default {
       type: Boolean,
       required: true,
     },
-    existUserInfo: {
+    showUserInfo: {
       type: Boolean,
       default: true,
+    },
+    showStatus: {
+      type: Boolean,
+      default: false,
+    },
+    showEdit: {
+      type: Boolean,
+      default: false,
     },
     noRecords: {
       type: String,
