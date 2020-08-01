@@ -29,7 +29,8 @@
               <posts-list
                 :posts="posts"
                 :loading="loading"
-                :exist-user-info="false"
+                :show-user-info="false"
+                :show-status="isCurrentUser"
                 no-records="投稿がありません"
               ></posts-list>
               <pagination :length="totalPages" :page="currentPage"></pagination>
@@ -42,6 +43,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import PostsList from '~/components/posts/core/PostsList.vue'
 import Pagination from '~/components/posts/core/Pagination.vue'
 import UserIcon from '~/components/common/UserIcon.vue'
@@ -85,6 +88,12 @@ export default {
       currentPage: 1,
       loading: true,
     }
+  },
+  computed: {
+    isCurrentUser() {
+      return this.$route.params.name === this.name
+    },
+    ...mapGetters('user', ['name']),
   },
   head() {
     return {

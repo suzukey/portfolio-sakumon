@@ -17,7 +17,9 @@
               <posts-list
                 :posts="posts"
                 :loading="loading"
-                :exist-user-info="false"
+                :show-user-info="false"
+                :show-status="true"
+                :show-edit="true"
                 no-records="投稿がありません"
               ></posts-list>
               <pagination :length="totalPages" :page="currentPage"></pagination>

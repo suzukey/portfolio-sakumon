@@ -4,6 +4,7 @@
     class="post-list-item py-1"
     @click="$router.push({ path: `/posts/${post.id}` })"
   >
+    <!-- アイコン表示 -->
     <v-list-item-avatar v-if="showUserInfo">
       <nuxt-link
         :to="`/users/${post.user.name}`"
@@ -15,8 +16,14 @@
         </v-avatar>
       </nuxt-link>
     </v-list-item-avatar>
+    <!-- 可視性表示 -->
+    <v-list-item-avatar v-else-if="showStatus">
+      <status-icon :status="post.status" />
+    </v-list-item-avatar>
 
+    <!-- 投稿内容 -->
     <v-list-item-content>
+      <!-- タイトル -->
       <v-list-item-title>
         <nuxt-link
           :to="`/posts/${post.id}`"
@@ -26,6 +33,7 @@
           {{ post.title }}
         </nuxt-link>
       </v-list-item-title>
+      <!-- 投稿主名 -->
       <v-list-item-subtitle v-if="showUserInfo">
         <span>by</span>
         <nuxt-link
@@ -36,6 +44,7 @@
           {{ post.user.nickname }}
         </nuxt-link>
       </v-list-item-subtitle>
+      <!-- タグ -->
       <v-list-item-subtitle v-if="post.tags" class="my-2">
         <v-slide-group class="post-tags">
           <v-chip
@@ -58,6 +67,7 @@
           </v-chip>
         </v-slide-group>
       </v-list-item-subtitle>
+      <!-- その他情報 -->
       <v-list-item-subtitle>
         <span class="mr-3">2020/06/27</span>
         <span v-if="post.likes" class="mr-3">
@@ -70,15 +80,29 @@
         </span>
       </v-list-item-subtitle>
     </v-list-item-content>
+    <template v-if="showEdit">
+      <v-list-item-action>
+        <v-btn icon nuxt :to="`/posts/${post.id}/edit`" @click.native.stop>
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
+      </v-list-item-action>
+      <v-list-item-action>
+        <v-btn icon @click.native.stop>
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-list-item-action>
+    </template>
   </v-list-item>
 </template>
 
 <script>
 import UserIcon from '~/components/common/UserIcon.vue'
+import StatusIcon from '~/components/posts/core/StatusIcon.vue'
 
 export default {
   components: {
     UserIcon,
+    StatusIcon,
   },
   props: {
     post: {
@@ -88,6 +112,14 @@ export default {
     showUserInfo: {
       type: Boolean,
       default: true,
+    },
+    showStatus: {
+      type: Boolean,
+      default: false,
+    },
+    showEdit: {
+      type: Boolean,
+      default: false,
     },
   },
 }
