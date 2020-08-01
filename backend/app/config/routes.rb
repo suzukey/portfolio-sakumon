@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       scope :me do
         get 'posts', to: 'me#posts'
+        get 'profile', to: 'me#profile'
       end
 
       resources :users, param: :name, only: [:show] do

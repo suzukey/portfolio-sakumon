@@ -14,5 +14,13 @@ module V1
              meta: pagination_dict(posts),
              status: :ok
     end
+
+    def profile
+      user = current_v1_user
+
+      render json: user,
+             each_serializer: V1::UserSerializer,
+             status: :ok
+    end
   end
 end

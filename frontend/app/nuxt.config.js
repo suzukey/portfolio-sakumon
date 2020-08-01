@@ -75,6 +75,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/svg',
+    '@nuxtjs/toast',
   ],
   /*
    ** vue-router module configuration
@@ -101,6 +102,14 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     optionsPath: './vuetify.options.js',
+  },
+  /*
+   ** vue-toasted module configuration
+   */
+  toast: {
+    position: 'bottom-right',
+    duration: 3000,
+    singleton: true,
   },
   /*
    ** Build configuration

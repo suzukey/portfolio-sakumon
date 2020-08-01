@@ -29,3 +29,17 @@ export const mutations = {
     state.iconUrl = ''
   },
 }
+
+export const actions = {
+  async setUserInfo({ commit }, payload) {
+    await this.$axios
+      .put('/api/v1/auth', payload)
+      .then((res) => {
+        commit('setUserInfo', payload)
+        this.$toast.success('保存しました')
+      })
+      .catch(() => {
+        this.$toast.error('保存に失敗しました')
+      })
+  },
+}

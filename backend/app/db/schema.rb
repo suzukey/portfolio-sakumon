@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_142856) do
     t.string "email"
     t.string "name", null: false
     t.string "nickname", default: "User", null: false
-    t.string "profile"
+    t.string "profile", default: "", null: false
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
