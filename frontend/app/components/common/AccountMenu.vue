@@ -25,7 +25,7 @@
           <v-list-item-action></v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item nuxt to="/settings">
+        <v-list-item nuxt to="/settings/profile">
           <v-list-item-icon>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-icon>
