@@ -56,7 +56,7 @@ export default {
   components: {
     UserIcon,
   },
-  async asyncData({ $axios, query, error }) {
+  async asyncData({ $axios, error }) {
     const userUrl = `/api/v1/me/profile`
 
     try {
