@@ -1,11 +1,11 @@
 module V1
   class PostsController < ApplicationController
     # ログイン時のみ投稿、変更、削除を許可
-    before_action :authenticate_v1_user!, only: [:create, :update, :destroy]
+    before_action :authenticate_v1_user!, only: [:create, :update, :destroy, :edit]
     # 対象の投稿を見つける
-    before_action :set_post, only: [:show, :update, :destroy]
+    before_action :set_post, only: [:show, :update, :destroy, :edit]
     # 編集・削除する権限があるかチェック
-    before_action :check_authorization, only: [:update, :destroy]
+    before_action :check_authorization, only: [:update, :destroy, :edit]
 
     # 投稿を作成
     def create
@@ -53,6 +53,12 @@ module V1
           data: @post.errors
         }, status: :bad_request
       end
+    end
+
+    def edit
+      render json: @post,
+             serializer: V1::PostEditSerializer,
+             status: :ok
     end
 
     # --リスト系--------------------------
