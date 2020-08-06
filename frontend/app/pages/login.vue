@@ -5,12 +5,14 @@
       v-model="credential.email"
       prepend-inner-icon="mdi-email"
       label="メールアドレス"
+      autocomplete="off"
     />
     <v-text-field
       v-model="credential.password"
       type="password"
       prepend-inner-icon="mdi-lock"
       label="パスワード"
+      autocomplete="off"
     />
     <v-checkbox
       v-model="autoLogin"

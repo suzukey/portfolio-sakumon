@@ -6,17 +6,20 @@
       :counter="16"
       prepend-inner-icon="mdi-account"
       label="ユーザー名"
+      autocomplete="off"
     />
     <v-text-field
       v-model="credential.email"
       prepend-inner-icon="mdi-email"
       label="メールアドレス"
+      autocomplete="off"
     />
     <v-text-field
       v-model="credential.password"
       type="password"
       prepend-inner-icon="mdi-lock"
       label="パスワード"
+      autocomplete="off"
     />
     <p class="agrees text-left mt-7 mb-5">
       <span>アカウントを登録することにより、</span>
