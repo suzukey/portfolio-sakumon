@@ -58,7 +58,7 @@ export default {
       this.currentPost = Object.assign({}, this.post)
     },
     async savePost() {
-      const postUrl = `/api/v1/posts/${this.$route.params.id}`
+      const postUrl = `/api/v1/posts/${this.post.id}`
       const postInfo = {
         title: this.post.title,
         body: this.post.body,

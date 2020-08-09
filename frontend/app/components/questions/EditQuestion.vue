@@ -49,7 +49,7 @@ export default {
           this.$toast.success('作成しました')
           const questionId = res.data.question.id
           this.$router.push({
-            path: `/posts/${postId}/questions/${questionId}`,
+            path: `/edit/posts/${postId}/questions/${questionId}`,
           })
         })
         .catch(() => {

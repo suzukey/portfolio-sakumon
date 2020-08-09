@@ -82,7 +82,7 @@
     </v-list-item-content>
     <template v-if="showEdit">
       <v-list-item-action>
-        <v-btn icon nuxt :to="`/posts/${post.id}/edit`" @click.native.stop>
+        <v-btn icon nuxt :to="`/edit/posts/${post.id}`" @click.native.stop>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </v-list-item-action>

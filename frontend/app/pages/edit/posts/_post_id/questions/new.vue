@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <CreateQuestion :post-id="$route.params.id" />
+          <CreateQuestion :post-id="$route.params.post_id" />
         </v-col>
       </v-row>
     </v-container>
