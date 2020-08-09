@@ -45,8 +45,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import PostsList from '~/components/posts/core/PostsList.vue'
-import Pagination from '~/components/posts/core/Pagination.vue'
+import PostsList from '~/components/list/posts/PostsList.vue'
+import Pagination from '~/components/list/Pagination.vue'
 import UserIcon from '~/components/common/UserIcon.vue'
 
 export default {

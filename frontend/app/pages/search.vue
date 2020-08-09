@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import PostsList from '~/components/posts/core/PostsList.vue'
-import Pagination from '~/components/posts/core/Pagination.vue'
+import PostsList from '~/components/list/posts/PostsList.vue'
+import Pagination from '~/components/list/Pagination.vue'
 
 export default {
   components: {

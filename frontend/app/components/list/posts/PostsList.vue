@@ -1,12 +1,7 @@
 <template>
   <div class="posts-list">
     <template v-if="loading">
-      <div v-for="n of 10" :key="n" class="posts-list-item-loading">
-        <v-divider></v-divider>
-        <v-skeleton-loader
-          type="list-item-avatar-three-line"
-        ></v-skeleton-loader>
-      </div>
+      <Skeletons :count="10" />
     </template>
     <template v-else-if="existPosts">
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
@@ -33,10 +28,12 @@
 </template>
 
 <script>
-import PostsListItem from '~/components/posts/core/PostsListItem.vue'
+import Skeletons from '~/components/list/Skeletons.vue'
+import PostsListItem from '~/components/list/posts/PostsListItem.vue'
 
 export default {
   components: {
+    Skeletons,
     PostsListItem,
   },
   props: {

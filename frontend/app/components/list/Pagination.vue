@@ -10,12 +10,18 @@
         ></v-pagination>
       </div>
       <div class="d-block d-sm-none">
+        <v-btn icon :disabled="canMove.top" @click="currentPage = 1">
+          <v-icon>mdi-chevron-double-left</v-icon>
+        </v-btn>
         <v-btn icon :disabled="canMove.prev" @click="currentPage--">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
         <span class="mx-1">{{ currentPage }} / {{ length }}</span>
         <v-btn icon :disabled="canMove.next" @click="currentPage++">
           <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+        <v-btn icon :disabled="canMove.last" @click="currentPage = length">
+          <v-icon>mdi-chevron-double-right</v-icon>
         </v-btn>
       </div>
     </v-list-item-content>
@@ -46,7 +52,9 @@ export default {
     canMove() {
       const canPrev = this.currentPage > 1
       const canNext = this.currentPage < this.length
-      return { prev: !canPrev, next: !canNext }
+      const canTop = this.currentPage > 1
+      const canLast = this.currentPage < this.length
+      return { prev: !canPrev, next: !canNext, top: !canTop, last: !canLast }
     },
   },
   watch: {

@@ -64,5 +64,10 @@ export default {
       loading: true,
     }
   },
+  head() {
+    return {
+      title: this.post.title,
+    }
+  },
 }
 </script>
