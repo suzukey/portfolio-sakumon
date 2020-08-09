@@ -18,7 +18,7 @@
     </v-list-item-avatar>
     <!-- 可視性表示 -->
     <v-list-item-avatar v-else-if="showStatus">
-      <status-icon :status="post.status" />
+      <status-icon-switcher :status="post.status" />
     </v-list-item-avatar>
 
     <!-- 投稿内容 -->
@@ -97,12 +97,12 @@
 
 <script>
 import UserIcon from '~/components/common/UserIcon.vue'
-import StatusIcon from '~/components/posts/core/StatusIcon.vue'
+import StatusIconSwitcher from '~/components/list/posts/StatusIconSwitcher.vue'
 
 export default {
   components: {
     UserIcon,
-    StatusIcon,
+    StatusIconSwitcher,
   },
   props: {
     post: {

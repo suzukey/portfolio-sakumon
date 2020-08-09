@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import PostsList from '~/components/posts/core/PostsList.vue'
+import PostsList from '~/components/list/posts/PostsList.vue'
 
 export default {
   components: {

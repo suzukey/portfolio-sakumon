@@ -5,7 +5,7 @@
         <v-col>
           <v-card>
             <v-list two-line>
-              <v-subheader>
+              <v-subheader class="pb-1">
                 <v-icon class="mr-2" color="accent">mdi-file</v-icon>
                 <span>投稿一覧</span>
                 <v-spacer></v-spacer>
@@ -13,16 +13,15 @@
                   新規作成
                 </v-btn>
               </v-subheader>
-
-              <posts-list
+              <PostList
                 :posts="posts"
                 :loading="loading"
                 :show-user-info="false"
                 :show-status="true"
                 :show-edit="true"
                 no-records="投稿がありません"
-              ></posts-list>
-              <pagination :length="totalPages" :page="currentPage"></pagination>
+              />
+              <Pagination :length="totalPages" :page="currentPage" />
             </v-list>
           </v-card>
         </v-col>
@@ -32,8 +31,15 @@
 </template>
 
 <script>
+import PostList from '~/components/list/posts/PostsList.vue'
+import Pagination from '~/components/list/Pagination.vue'
+
 export default {
   middleware: 'authenticated',
+  components: {
+    PostList,
+    Pagination,
+  },
   async asyncData({ $axios, query, error }) {
     let postsUrl = `/api/v1/me/posts`
     postsUrl += '?page=' + (query.page || '1')
