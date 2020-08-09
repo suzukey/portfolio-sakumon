@@ -27,7 +27,9 @@ module V1
       question = @post.questions.create(post_params)
 
       if question.errors.blank?
-        render status: :created
+        render json: {
+          question: { id: question.id }
+        }, status: :created
       else
         render json: {
           data: question.errors

@@ -8,7 +8,7 @@
     </template>
     <!-- 非公開 -->
     <template v-else-if="status === 'draft'">
-      <status-icon color="red darken-1" icon="mdi-edit">
+      <status-icon color="red darken-1" icon="mdi-pencil">
         非公開
       </status-icon>
     </template>

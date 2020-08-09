@@ -25,14 +25,12 @@ export default {
       type: String,
       required: true,
     },
-    question: {
-      type: Object,
-      required: true,
-    },
   },
   data() {
     return {
-      currentQuestion: {},
+      question: {
+        body: '',
+      },
     }
   },
   methods: {
