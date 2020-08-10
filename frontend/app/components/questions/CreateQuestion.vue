@@ -46,7 +46,7 @@ export default {
         .then((res) => {
           this.$toast.success('作成しました')
           const questionId = res.data.question.id
-          this.$router.push({
+          this.$router.replace({
             path: `/edit/posts/${postId}/questions/${questionId}`,
           })
         })

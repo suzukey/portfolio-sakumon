@@ -43,7 +43,7 @@ export default {
         .then((res) => {
           this.$toast.success('作成しました')
           const postId = res.data.post.id
-          this.$router.push({ path: `/edit/posts/${postId}` })
+          this.$router.replace({ path: `/edit/posts/${postId}` })
         })
         .catch(() => {
           this.$toast.error('作成に失敗しました')
