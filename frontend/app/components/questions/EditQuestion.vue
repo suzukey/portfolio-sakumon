@@ -8,11 +8,20 @@
         row-height="20"
         rows="3"
       />
+      <v-radio-group v-model="question.status" row>
+        <v-radio label="公開" value="publish"></v-radio>
+        <v-radio label="下書き" value="draft"></v-radio>
+      </v-radio-group>
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" class="px-7" @click="saveQuestion">
-        作成
+      <v-btn
+        color="primary"
+        :disabled="!isChanged"
+        class="px-7"
+        @click="saveQuestion"
+      >
+        保存
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -35,25 +44,36 @@ export default {
       currentQuestion: {},
     }
   },
+  computed: {
+    isChanged() {
+      const questionJson = JSON.stringify(this.question)
+      const currentQuestionJson = JSON.stringify(this.currentQuestion)
+      return questionJson !== currentQuestionJson
+    },
+  },
+  created() {
+    this.updatedQuestion()
+  },
   methods: {
+    updatedQuestion() {
+      this.currentQuestion = Object.assign({}, this.question)
+    },
     async saveQuestion() {
       const postId = this.postId
-      const questionUrl = `/api/v1/posts/${postId}/questions`
+      const questionId = this.question.id
+      const questionUrl = `/api/v1/posts/${postId}/questions/${questionId}`
       const questionInfo = {
         body: this.question.body,
         status: this.question.status,
       }
       await this.$axios
-        .post(questionUrl, questionInfo)
+        .put(questionUrl, questionInfo)
         .then((res) => {
-          this.$toast.success('作成しました')
-          const questionId = res.data.question.id
-          this.$router.push({
-            path: `/edit/posts/${postId}/questions/${questionId}`,
-          })
+          this.$toast.success('保存しました')
+          this.updatedQuestion()
         })
         .catch(() => {
-          this.$toast.error('作成に失敗しました')
+          this.$toast.error('保存に失敗しました')
         })
     },
   },

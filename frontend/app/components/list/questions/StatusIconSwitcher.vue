@@ -9,7 +9,7 @@
     <!-- 非公開 -->
     <template v-else-if="status === 'draft'">
       <status-icon color="red darken-1" icon="mdi-pencil">
-        非公開
+        下書き
       </status-icon>
     </template>
   </div>
