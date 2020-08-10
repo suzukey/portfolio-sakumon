@@ -9,7 +9,7 @@
                 <v-icon class="mr-2" color="accent">mdi-file</v-icon>
                 <span>投稿一覧</span>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" outlined nuxt to="/posts/new">
+                <v-btn color="primary" outlined nuxt to="/edit/posts/new">
                   新規作成
                 </v-btn>
               </v-subheader>

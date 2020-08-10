@@ -14,7 +14,7 @@
                 <v-icon class="mr-2" color="accent">mdi-file-question</v-icon>
                 <span>問題一覧</span>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" outlined nuxt :to="newPostLink">
+                <v-btn color="primary" outlined nuxt :to="newQuestionLink">
                   新規作成
                 </v-btn>
               </v-subheader>
@@ -42,7 +42,7 @@ export default {
     QuestionList,
   },
   async asyncData({ $axios, params, error }) {
-    const postId = params.id
+    const postId = params.post_id
     const postUrl = `/api/v1/posts/${postId}`
     const questionsUrl = `${postUrl}/questions`
 
@@ -73,9 +73,9 @@ export default {
     }
   },
   computed: {
-    newPostLink() {
+    newQuestionLink() {
       const postId = this.post.id
-      return `/posts/${postId}/questions/new`
+      return `/edit/posts/${postId}/questions/new`
     },
   },
   head() {

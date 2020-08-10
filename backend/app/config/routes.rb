@@ -19,10 +19,6 @@ Rails.application.routes.draw do
       resources :posts, except: [:index] do
         resources :questions
 
-        member do
-          get 'edit'
-        end
-
         collection do
           get 'search'
           get 'latest'

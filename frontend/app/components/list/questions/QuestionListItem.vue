@@ -42,7 +42,7 @@ export default {
     questionLink() {
       const postId = this.postId
       const questionId = this.question.id
-      return `/posts/${postId}/questions/${questionId}`
+      return `/edit/posts/${postId}/questions/${questionId}`
     },
   },
 }

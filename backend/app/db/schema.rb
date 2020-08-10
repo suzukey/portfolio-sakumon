@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_142856) do
     t.string "user_id", null: false
     t.string "title", null: false
     t.text "body"
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_142856) do
   create_table "questions", id: :string, force: :cascade do |t|
     t.string "post_id", null: false
     t.text "body", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_questions_on_post_id"

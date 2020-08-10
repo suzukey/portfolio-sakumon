@@ -55,12 +55,6 @@ module V1
       end
     end
 
-    def edit
-      render json: @post,
-             serializer: V1::PostEditSerializer,
-             status: :ok
-    end
-
     # --リスト系--------------------------
 
     # 最新投稿をピックアップ (publicのみ)
