@@ -52,7 +52,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/axios'],
+  plugins: ['~/plugins/axios', '~/plugins/render'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -76,6 +76,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/svg',
     '@nuxtjs/toast',
+    '@nuxtjs/markdownit',
   ],
   /*
    ** vue-router module configuration
@@ -110,6 +111,14 @@ export default {
     position: 'bottom-right',
     duration: 3000,
     singleton: true,
+  },
+  /*
+   ** markdown-it module configuration
+   */
+  markdownit: {
+    injected: true,
+    breaks: true,
+    html: true,
   },
   /*
    ** Build configuration
