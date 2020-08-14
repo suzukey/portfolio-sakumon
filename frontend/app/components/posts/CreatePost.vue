@@ -4,7 +4,7 @@
       <v-text-field v-model="post.title" :counter="48" label="タイトル" />
       <v-textarea
         v-model="post.body"
-        label="内容"
+        label="説明文"
         :counter="128"
         auto-grow
         row-height="20"
