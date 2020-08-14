@@ -18,12 +18,14 @@
             </v-list-item>
 
             <v-card-title>{{ post.title }}</v-card-title>
-            <v-card-subtitle>{{ post.body }}</v-card-subtitle>
+            <v-card-text>
+              <TextRender :txt-string="post.body" />
+            </v-card-text>
 
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="primary" dark class="px-7">
-                プレイ
+                開始
               </v-btn>
             </v-card-actions>
           </v-card>
