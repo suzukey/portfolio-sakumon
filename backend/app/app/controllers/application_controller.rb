@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
 
+  before_action :set_host
+
   class Forbidden < ActionController::ActionControllerError; end
 
   # 投稿が見つからなかった場合のエラーを返す
@@ -9,6 +11,10 @@ class ApplicationController < ActionController::API
   rescue_from Forbidden, with: :forbidden
 
   private
+
+  def set_host
+    Rails.application.routes.default_url_options[:host] = request.host_with_port
+  end
 
   def record_not_found
     render json: {

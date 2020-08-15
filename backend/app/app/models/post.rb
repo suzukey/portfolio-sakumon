@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   has_many :questions, dependent: :destroy
   belongs_to :user
 
+  has_many_attached :images
+
   validates :title,
             presence: true,
             length: { maximum: 48 }
