@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       resources :posts, except: [:index] do
         resources :questions
 
+        member do
+          post 'images'
+        end
+
         collection do
           get 'search'
           get 'latest'

@@ -1,11 +1,11 @@
 module V1
   class PostsController < ApplicationController
     # ログイン時のみ投稿、変更、削除を許可
-    before_action :authenticate_v1_user!, only: [:create, :update, :destroy, :edit]
+    before_action :authenticate_v1_user!, only: [:create, :update, :destroy, :images]
     # 対象の投稿を見つける
-    before_action :set_post, only: [:show, :update, :destroy, :edit]
+    before_action :set_post, only: [:show, :update, :destroy, :images]
     # 編集・削除する権限があるかチェック
-    before_action :check_authorization, only: [:update, :destroy, :edit]
+    before_action :check_authorization, only: [:update, :destroy, :images]
 
     # 投稿を作成
     def create
@@ -52,6 +52,24 @@ module V1
         render json: {
           data: @post.errors
         }, status: :bad_request
+      end
+    end
+
+    # 使用する画像を投稿する
+    def images
+      image = params[:image]
+      if @post.update(images: image)
+        url_helpers = Rails.application.routes.url_helpers
+        variant = @post.images.last.variant({})
+        render json: {
+          image: {
+            url: url_helpers.rails_representation_url(variant),
+            # url: Rails.application.routes.url_helpers.rails_representation_url(@post.images.last.variant({}), only_path: true),
+            filename: image.original_filename
+          }
+        }, status: :ok
+      else
+        render json: post.errors, status: :unprocessable_entity
       end
     end
 

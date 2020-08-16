@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import StatusIconSwitcher from '~/components/list/questions/StatusIconSwitcher.vue'
+import StatusIconSwitcher from '~/components/list/questions/QuestionStatusIconSwitcher.vue'
 
 export default {
   components: {

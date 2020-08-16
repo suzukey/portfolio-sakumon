@@ -97,7 +97,7 @@
 
 <script>
 import UserIcon from '~/components/common/UserIcon.vue'
-import StatusIconSwitcher from '~/components/list/posts/StatusIconSwitcher.vue'
+import StatusIconSwitcher from '~/components/list/posts/PostStatusIconSwitcher.vue'
 
 export default {
   components: {
