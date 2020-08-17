@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_144324) do
   end
 
   create_table "choices", id: :string, force: :cascade do |t|
-    t.integer "question_id", null: false
+    t.string "question_id", null: false
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
