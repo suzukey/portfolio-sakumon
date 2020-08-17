@@ -91,7 +91,7 @@ export default {
 }
 
 .text-editor {
-  height: calc(100% - 55px);
+  height: calc(100% - 108px);
   overflow-x: hidden;
   overflow-y: auto;
 }
