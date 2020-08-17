@@ -71,7 +71,7 @@
     </v-main>
     <v-footer app elevation="20" class="py-2">
       <v-spacer></v-spacer>
-      <v-btn outlined class="ml-2">
+      <v-btn outlined class="ml-2" nuxt :to="playLink">
         問題を試す
       </v-btn>
       <v-btn color="error" outlined class="ml-2 px-7" @click="deleteQuestion">
@@ -130,6 +130,11 @@ export default {
       const postId = this.$route.params.post_id
       const questionId = this.$route.params.question_id
       return `/edit/posts/${postId}/questions/${questionId}/choices/new`
+    },
+    playLink() {
+      const postId = this.$route.params.post_id
+      const questionId = this.$route.params.question_id
+      return `/edit/posts/${postId}/questions/${questionId}/play`
     },
   },
   methods: {
