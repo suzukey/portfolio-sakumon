@@ -35,7 +35,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_144324) do
 
   create_table "choices", id: :string, force: :cascade do |t|
     t.string "question_id", null: false
-    t.string "body"
+    t.string "body", null: false
+    t.boolean "correct", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_choices_on_question_id"
