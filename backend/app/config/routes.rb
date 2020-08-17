@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       end
 
       resources :posts, except: [:index] do
-        resources :questions
+        resources :questions do
+          resources :choices
+        end
 
         member do
           post 'images'
