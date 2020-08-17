@@ -1,7 +1,7 @@
 <template>
   <v-card class="text-viewer-card">
     <v-card-subtitle>
-      プレビュー
+      {{ title }}
     </v-card-subtitle>
     <v-divider></v-divider>
     <v-card-text class="text-viewer">
@@ -17,6 +17,22 @@ export default {
       type: String,
       required: true,
     },
+    title: {
+      type: String,
+      default: 'プレビュー',
+    },
   },
 }
 </script>
+
+<style scoped>
+.text-viewer-card {
+  overflow: hidden;
+}
+
+.text-viewer {
+  height: calc(100% - 55px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>

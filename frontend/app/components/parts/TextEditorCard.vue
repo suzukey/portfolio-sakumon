@@ -1,7 +1,7 @@
 <template>
   <v-card class="text-editor-card">
     <v-card-subtitle>
-      問題文
+      {{ title }}
     </v-card-subtitle>
     <v-divider></v-divider>
     <v-card-actions>
@@ -36,6 +36,10 @@ export default {
       required: true,
     },
     postId: {
+      type: String,
+      required: true,
+    },
+    title: {
       type: String,
       required: true,
     },
@@ -80,3 +84,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.text-editor-card {
+  overflow: hidden;
+}
+
+.text-editor {
+  height: calc(100% - 55px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>

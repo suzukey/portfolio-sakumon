@@ -19,9 +19,9 @@
     </v-main>
     <v-footer app elevation="20" class="py-2">
       <v-spacer></v-spacer>
-      <v-btn color="primary" depressed class="px-7" @click="saveQuestion"
-        >作成</v-btn
-      >
+      <v-btn color="primary" depressed class="px-7" @click="saveQuestion">
+        保存
+      </v-btn>
     </v-footer>
   </div>
 </template>
@@ -35,32 +35,50 @@ export default {
   components: {
     MyHeader,
   },
+  async asyncData({ $axios, params, error }) {
+    const postId = params.post_id
+    const questionId = params.question_id
+    const questionUrl = `/api/v1/posts/${postId}/questions/${questionId}`
+
+    try {
+      const response = await $axios.$get(questionUrl)
+
+      const question = response.question
+      const loading = false
+
+      return { question, loading }
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message,
+      })
+    }
+  },
   data() {
     return {
       question: {
         body: '',
       },
+      loading: true,
     }
   },
   methods: {
     async saveQuestion() {
       const postId = this.$route.params.post_id
-      const questionUrl = `/api/v1/posts/${postId}/questions`
+      const questionId = this.$route.params.question_id
+      const questionUrl = `/api/v1/posts/${postId}/questions/${questionId}`
       const questionInfo = {
         body: this.question.body,
         status: this.question.status,
       }
       await this.$axios
-        .post(questionUrl, questionInfo)
+        .put(questionUrl, questionInfo)
         .then((res) => {
-          this.$toast.success('作成しました')
-          const questionId = res.data.question.id
-          this.$router.replace({
-            path: `/edit/posts/${postId}/questions/${questionId}`,
-          })
+          this.$toast.success('保存しました')
+          this.$router.go(-1)
         })
         .catch(() => {
-          this.$toast.error('作成に失敗しました')
+          this.$toast.error('保存に失敗しました')
         })
     },
   },
