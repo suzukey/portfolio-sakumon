@@ -21,6 +21,13 @@ Rails.application.routes.draw do
           resources :choices
         end
 
+        resources :play, only: [] do
+          collection do
+            get 'start'
+            get 'check'
+          end
+        end
+
         member do
           post 'images'
         end
