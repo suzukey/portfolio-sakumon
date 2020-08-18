@@ -64,7 +64,6 @@ module V1
         render json: {
           image: {
             url: url_helpers.rails_representation_url(variant),
-            # url: Rails.application.routes.url_helpers.rails_representation_url(@post.images.last.variant({}), only_path: true),
             filename: image.original_filename
           }
         }, status: :ok
