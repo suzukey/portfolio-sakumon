@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         resources :play, only: [] do
           collection do
             get 'start'
-            get 'check'
+            post 'check'
           end
         end
 

@@ -10,7 +10,17 @@ module V1
     end
 
     def check
-      render json: {}, status: :ok
+      question_id = params[:question_id]
+      answer = params[:answer]
+
+      question = @post.questions.find_by!(id: question_id)
+      choices = question.choices
+
+      result = check_answer(answer, choices)
+
+      render json: {
+        result: result ? 'correct' : 'incorrect'
+      }, status: :ok
     end
 
     private
@@ -23,6 +33,22 @@ module V1
     def check_authorization
       # 投稿主とログインしていないか、ユーザーidが一致しなければエラー
       raise Forbidden if !v1_user_signed_in? || @post.user_id != current_v1_user.id
+    end
+
+    # 正解ならtrueを返却
+    def check_answer(answer, choices)
+      # 回答が配列かどうか
+      answer.empty? || !answer.instance_of?(Array) && return
+
+      correct_ids = choices.where(correct: true).pluck(:id)
+
+      # 回答の数と正解の数が同一か
+      answer.length != correct_ids.length && return
+
+      check_array = answer & correct_ids
+      check_array.length != correct_ids.length && return
+
+      true
     end
   end
 end
