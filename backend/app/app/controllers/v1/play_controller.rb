@@ -14,12 +14,13 @@ module V1
       answer = params[:answer]
 
       question = @post.questions.find_by!(id: question_id)
-      choices = question.choices
+      correct_choices = question.choices.where(correct: true)
 
-      result = check_answer(answer, choices)
+      result = check_answer(answer, correct_choices)
 
       render json: {
-        result: result ? 'correct' : 'incorrect'
+        result: result ? 'correct' : 'incorrect',
+        correct_choices: correct_choices.pluck(:body)
       }, status: :ok
     end
 
@@ -36,11 +37,11 @@ module V1
     end
 
     # 正解ならtrueを返却
-    def check_answer(answer, choices)
+    def check_answer(answer, correct_choices)
       # 回答が配列かどうか
-      answer.empty? || !answer.instance_of?(Array) && return
+      !answer.instance_of?(Array) && return
 
-      correct_ids = choices.where(correct: true).pluck(:id)
+      correct_ids = correct_choices.pluck(:id)
 
       # 回答の数と正解の数が同一か
       answer.length != correct_ids.length && return
