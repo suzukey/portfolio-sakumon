@@ -36,7 +36,10 @@
     </v-main>
     <v-footer app elevation="20" class="py-2">
       <v-spacer></v-spacer>
-      <v-btn color="primary" depressed class="px-7" @click="saveChoice">
+      <v-btn color="error" outlined class="ml-2 px-7" @click="deleteChoice">
+        削除
+      </v-btn>
+      <v-btn color="primary" depressed class="ml-2 px-7" @click="saveChoice">
         保存
       </v-btn>
     </v-footer>
@@ -102,6 +105,23 @@ export default {
         })
         .catch(() => {
           this.$toast.error('保存に失敗しました')
+        })
+    },
+    async deleteChoice() {
+      const postId = this.$route.params.post_id
+      const questionId = this.$route.params.question_id
+      const choiceId = this.$route.params.choice_id
+      const questionUrl = `/api/v1/posts/${postId}/questions/${questionId}/choices/${choiceId}`
+      const nextUrl = `/edit/posts/${postId}/questions/${questionId}`
+
+      await this.$axios
+        .delete(questionUrl)
+        .then((res) => {
+          this.$toast.success('削除しました')
+          this.$router.replace(nextUrl)
+        })
+        .catch(() => {
+          this.$toast.error('削除に失敗しました')
         })
     },
   },

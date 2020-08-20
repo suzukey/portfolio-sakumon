@@ -87,7 +87,7 @@
         </v-btn>
       </v-list-item-action>
       <v-list-item-action>
-        <v-btn icon @click.native.stop>
+        <v-btn icon @click="deletePost" @click.native.stop>
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-list-item-action>
@@ -120,6 +120,18 @@ export default {
     showEdit: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    async deletePost() {
+      const url = `/api/v1/posts/${this.post.id}`
+      try {
+        await this.$axios.$delete(url)
+        this.$toast.success('削除しました')
+        this.$nuxt.refresh()
+      } catch {
+        this.$toast.error('削除に失敗しました')
+      }
     },
   },
 }
