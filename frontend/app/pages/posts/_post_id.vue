@@ -24,8 +24,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" dark class="px-7">
-                開始
+              <v-btn color="primary" dark class="px-5" @click="startPlay">
+                スタート
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import UserIcon from '~/components/common/UserIcon.vue'
 
 export default {
@@ -65,6 +67,14 @@ export default {
       post: {},
       loading: true,
     }
+  },
+  methods: {
+    async startPlay() {
+      const postId = this.$route.params.post_id
+      await this.getPost(postId)
+      this.$router.push(`/play`)
+    },
+    ...mapActions('play', ['getPost']),
   },
   head() {
     return {

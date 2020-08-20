@@ -25,4 +25,8 @@ export default {
   object-fit: scale-down;
   width: 100%;
 }
+
+.text-body p:last-child {
+  margin-bottom: 0;
+}
 </style>

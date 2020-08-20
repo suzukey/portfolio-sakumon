@@ -43,7 +43,7 @@ Metrics/MethodLength:
 
 # 1クラスが120行を超えない
 Metrics/ClassLength:
-  Max: 120
+  Max: 150
   Exclude:
     - "db/migrate/*.rb"
 
@@ -54,6 +54,7 @@ Metrics/CyclomaticComplexity:
     - "db/migrate/*.rb"
 
 Metrics/AbcSize:
+  Max: 18
   Exclude:
     - "db/migrate/*rb"
 
