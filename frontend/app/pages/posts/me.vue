@@ -68,6 +68,7 @@ export default {
       loading: true,
     }
   },
+
   head() {
     return {
       title: '投稿一覧',

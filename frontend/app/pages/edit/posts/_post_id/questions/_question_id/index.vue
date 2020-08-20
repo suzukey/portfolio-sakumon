@@ -71,7 +71,7 @@
     </v-main>
     <v-footer app elevation="20" class="py-2">
       <v-spacer></v-spacer>
-      <v-btn outlined class="ml-2" nuxt :to="playLink">
+      <v-btn outlined class="ml-2" disabled nuxt :to="playLink">
         問題を試す
       </v-btn>
       <v-btn color="error" outlined class="ml-2 px-7" @click="deleteQuestion">
@@ -145,12 +145,13 @@ export default {
       const postId = this.$route.params.post_id
       const questionId = this.$route.params.question_id
       const questionUrl = `/api/v1/posts/${postId}/questions/${questionId}`
+      const nextUrl = `/edit/posts/${postId}`
 
       await this.$axios
         .delete(questionUrl)
         .then((res) => {
           this.$toast.success('削除しました')
-          this.$router.go(-1)
+          this.$router.replace(nextUrl)
         })
         .catch(() => {
           this.$toast.error('削除に失敗しました')

@@ -92,9 +92,8 @@ export default {
         .post(choiceUrl, choiceInfo)
         .then((res) => {
           this.$toast.success('作成しました')
-          const choiceId = res.data.choice.id
           this.$router.replace({
-            path: `/edit/posts/${postId}/questions/${questionId}/choices/${choiceId}`,
+            path: `/edit/posts/${postId}/questions/${questionId}`,
           })
         })
         .catch(() => {
