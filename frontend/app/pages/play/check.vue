@@ -17,27 +17,61 @@
               正解
             </v-card-subtitle>
             <v-card-text>
-              test
+              <template v-if="correctChoices.length">
+                <div v-for="(choice, idx) in correctChoices" :key="idx">
+                  <TextRender :txt-string="choice" :show-image="true" />
+                </div>
+              </template>
+              <template v-else>
+                <div>
+                  なし
+                </div>
+              </template>
             </v-card-text>
             <v-card-subtitle class="font-weight-bold">
               あなたの回答
             </v-card-subtitle>
             <v-card-text>
-              test
+              <template v-if="choicedBody.length">
+                <div v-for="(choice, idx) in choicedBody" :key="idx">
+                  <TextRender
+                    v-if="choice"
+                    :txt-string="choice"
+                    :show-image="true"
+                  />
+                </div>
+              </template>
+              <template v-else>
+                <div>
+                  なし
+                </div>
+              </template>
             </v-card-text>
             <v-card-title>
-              正解
+              <template v-if="checked.result === 'correct'">
+                正解
+              </template>
+              <template v-else>
+                不正解
+              </template>
             </v-card-title>
             <v-divider></v-divider>
             <v-card-subtitle class="font-weight-bold">
               問題
             </v-card-subtitle>
             <v-card-text>
-              <TextRender :txt-string="nowQuestion.body" />
+              <TextRender :txt-string="nowQuestion.body" :show-image="true" />
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" class="px-5" @click="next">次へ</v-btn>
+              <template v-if="!isLast">
+                <v-btn color="primary" class="px-5" @click="next">次へ</v-btn>
+              </template>
+              <template v-else>
+                <v-btn color="primary" class="px-5" @click="result">
+                  結果確認
+                </v-btn>
+              </template>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -61,7 +95,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   layout: 'playing',
@@ -71,12 +105,18 @@ export default {
     }
   },
   computed: {
+    correctChoices() {
+      return this.checked.correct_choices
+    },
     ...mapGetters('play', [
       'post',
       'nowQuestion',
       'progress',
       'progressCounter',
       'existPostObject',
+      'checked',
+      'choicedBody',
+      'isLast',
     ]),
   },
   created() {
@@ -87,8 +127,13 @@ export default {
   },
   methods: {
     next() {
+      this.playNext()
       this.$router.replace('/play')
     },
+    result() {
+      this.$router.replace('/play/result')
+    },
+    ...mapActions('play', ['playNext']),
   },
   head() {
     return {

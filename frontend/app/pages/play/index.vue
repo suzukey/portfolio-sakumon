@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   layout: 'playing',
@@ -81,8 +81,10 @@ export default {
   },
   methods: {
     answer() {
+      this.checkAnswer(this.selected)
       this.$router.replace('/play/check')
     },
+    ...mapActions('play', ['checkAnswer']),
   },
   head() {
     return {
