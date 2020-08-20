@@ -3,6 +3,8 @@ kind: Config
 
 # Dockerイメージのビルドに関する設定
 build:
+  tagPolicy:
+    sha256: {}
   artifacts:
     # ビルドするイメージ
     - image: suzukey/pf-sakumon-frontend
@@ -11,7 +13,6 @@ build:
       context: backend/
   local:
     useBuildkit: true
-    push: false
 
 # デプロイに関する設定
 deploy:
