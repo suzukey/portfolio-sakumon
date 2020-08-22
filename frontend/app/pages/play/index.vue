@@ -17,7 +17,7 @@
               問題
             </v-card-subtitle>
             <v-card-text>
-              <TextRender :txt-string="nowQuestion.body" />
+              <TextRender :txt-string="nowQuestion.body" :show-image="true" />
             </v-card-text>
             <v-card-subtitle class="font-weight-bold">
               選択肢

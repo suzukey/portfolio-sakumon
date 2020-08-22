@@ -52,7 +52,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/axios', '~/plugins/render'],
+  plugins: ['~/plugins/axios', '~/plugins/renderer'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -93,8 +93,10 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://rails-backend:3000/',
-    browserBaseURL: 'https://sakumon.localhost',
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://portfolio.sakumon.me/'
+        : 'http://sakumon.localhost/',
   },
   /*
    ** vuetify module configuration
