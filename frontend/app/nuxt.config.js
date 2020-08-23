@@ -67,6 +67,7 @@ export default {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
+    '@nuxtjs/moment',
   ],
   /*
    ** Nuxt.js modules
@@ -121,6 +122,9 @@ export default {
     injected: true,
     breaks: true,
     html: true,
+  },
+  moment: {
+    locales: ['ja'],
   },
   /*
    ** Build configuration

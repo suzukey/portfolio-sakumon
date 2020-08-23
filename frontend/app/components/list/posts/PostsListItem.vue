@@ -69,7 +69,9 @@
       </v-list-item-subtitle>
       <!-- その他情報 -->
       <v-list-item-subtitle>
-        <span class="mr-3">2020/06/27</span>
+        <span class="mr-3">
+          {{ $moment(post.created_at).format('YYYY/MM/DD') }}
+        </span>
         <span v-if="post.likes" class="mr-3">
           <v-icon small>mdi-heart</v-icon>
           123
