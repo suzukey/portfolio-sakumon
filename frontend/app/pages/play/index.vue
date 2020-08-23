@@ -40,7 +40,7 @@
         <v-col>
           <v-card>
             <v-card-text>
-              <div class="progress mb-2">
+              <div class="progress my-2">
                 <v-progress-linear v-model="progress"></v-progress-linear>
               </div>
               <div class="counter text-right">
