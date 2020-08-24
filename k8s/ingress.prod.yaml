@@ -9,14 +9,9 @@ metadata:
       rewrite ^/(.*)/$ /$1 redirect;
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
-    nginx.ingress.kubernetes.io/enable-owasp-core-rules: "true"
-spec:
-  tls:
-    - hosts:
-        - sakumon.localhost
-      secretName: selfsigned-cert-tls
+    nginx.ingress.kubernetes.io/enable-owasp-core-rules: "true"spec:
   rules:
-    - host: sakumon.localhost
+    - host: portfolio.sakumon.me
       http:
         paths:
           - path: /
@@ -30,7 +25,7 @@ spec:
 ---
 apiVersion: v1
 data:
-  use-forwarded-headers: "false"
+  use-forwarded-headers: "true"
   server-tokens: "false"
 kind: ConfigMap
 metadata:
