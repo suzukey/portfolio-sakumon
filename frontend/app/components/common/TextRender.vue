@@ -1,7 +1,7 @@
 <template>
   <div class="text-body">
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <div v-html="$render.text(txtString, showImage)"></div>
+    <div v-html="$renderer.text(txtString, showImage)"></div>
   </div>
 </template>
 

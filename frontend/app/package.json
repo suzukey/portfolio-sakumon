@@ -32,6 +32,8 @@
     "@babel/core": "^7.0.0-0",
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/svg": "^0.1.11",
     "@nuxtjs/vuetify": "^1.11.2",

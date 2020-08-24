@@ -52,7 +52,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/axios', '~/plugins/render'],
+  plugins: ['~/plugins/axios', '~/plugins/renderer'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -67,6 +67,7 @@ export default {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
+    '@nuxtjs/moment',
   ],
   /*
    ** Nuxt.js modules
@@ -93,8 +94,10 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://rails-backend:3000/',
-    browserBaseURL: 'https://sakumon.localhost',
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://portfolio.sakumon.me/'
+        : 'http://sakumon.localhost/',
   },
   /*
    ** vuetify module configuration
@@ -119,6 +122,9 @@ export default {
     injected: true,
     breaks: true,
     html: true,
+  },
+  moment: {
+    locales: ['ja'],
   },
   /*
    ** Build configuration

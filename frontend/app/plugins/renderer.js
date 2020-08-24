@@ -47,17 +47,17 @@ export default ({ app }, inject) => {
     return sanitizedText
   }
 
-  // $renderで使えるようにする
-  inject('render', {
+  // $rendererで使えるようにする
+  inject('renderer', {
     text: textRender,
     md: mdRender,
   })
 
   const myOptions = {
     allowedTags: {
-      before: ['img'],
-      text: ['p', 'strong', 'br'],
-      textAndImg: ['p', 'strong', 'img', 'br'],
+      before: ['img', 'u'],
+      text: ['p', 'strong', 'br', 'u'],
+      textAndImg: ['p', 'strong', 'img', 'br', 'u'],
       md: [
         'h1',
         'h2',
@@ -66,6 +66,7 @@ export default ({ app }, inject) => {
         'h5',
         'h6',
         'blockquote',
+        'u',
         'p',
         'a',
         'ul',

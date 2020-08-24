@@ -7,7 +7,7 @@
           <template v-slot:label>
             <div class="text-body">
               <!-- eslint-disable-next-line vue/no-v-html -->
-              <div v-html="$render.text(choice.body, showImage)"></div>
+              <div v-html="$renderer.text(choice.body, showImage)"></div>
             </div>
           </template>
         </v-checkbox>
@@ -21,7 +21,7 @@
             <template v-slot:label>
               <div class="text-body">
                 <!-- eslint-disable-next-line vue/no-v-html -->
-                <div v-html="$render.text(choice.body, showImage)"></div>
+                <div v-html="$renderer.text(choice.body, showImage)"></div>
               </div>
             </template>
           </v-radio>

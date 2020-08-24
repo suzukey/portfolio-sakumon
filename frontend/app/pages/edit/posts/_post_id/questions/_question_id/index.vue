@@ -71,11 +71,11 @@
     </v-main>
     <v-footer app elevation="20" class="py-2">
       <v-spacer></v-spacer>
-      <v-btn outlined class="ml-2" disabled nuxt :to="playLink">
-        問題を試す
-      </v-btn>
       <v-btn color="error" outlined class="ml-2 px-7" @click="deleteQuestion">
         削除
+      </v-btn>
+      <v-btn outlined class="ml-2" disabled nuxt :to="playLink">
+        問題を試す
       </v-btn>
     </v-footer>
   </div>

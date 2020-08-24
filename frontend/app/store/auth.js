@@ -32,7 +32,9 @@ export const actions = {
         loginProcess(commit, res)
         this.$router.push('/')
       })
-      .catch(() => {})
+      .catch(() => {
+        this.$toast.error('ログインに失敗しました')
+      })
   },
 
   async register({ commit }, payload) {
@@ -42,7 +44,9 @@ export const actions = {
         loginProcess(commit, res)
         this.$router.push('/')
       })
-      .catch(() => {})
+      .catch(() => {
+        this.$toast.error('登録に失敗しました')
+      })
   },
 
   async logout({ commit }) {
@@ -53,7 +57,9 @@ export const actions = {
         commit('user/revertUserInfo', { root: true })
         this.$router.push('/')
       })
-      .catch(() => {})
+      .catch(() => {
+        this.$toast.error('ログアウトに失敗しました')
+      })
   },
 }
 
