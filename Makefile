@@ -1,2 +1,2 @@
 skaffold-dev:
-	skaffold dev -f skaffold.yaml
+	skaffold dev -f skaffold.dev.yaml

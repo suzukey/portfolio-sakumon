@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta2
+apiVersion: skaffold/v2beta6
 kind: Config
 
 # Dockerイメージのビルドに関する設定
@@ -9,8 +9,12 @@ build:
     # ビルドするイメージ
     - image: suzukey/pf-sakumon-frontend
       context: frontend/
+      docker:
+        dockerfile: Dockerfile.dev
     - image: suzukey/pf-sakumon-backend
       context: backend/
+      docker:
+        dockerfile: Dockerfile.dev
   local:
     useBuildkit: true
 
@@ -22,9 +26,5 @@ deploy:
       - k8s/frontend.yaml
       - k8s/backend.yaml
       - k8s/ingress.dev.yaml
-      # Certificate
-      # - 後日実装予定
       # Ingress
       - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
-      # CertManager
-      # - https://github.com/jetstack/cert-manager/releases/download/v0.15.0-beta.1/cert-manager.yaml
