@@ -94,10 +94,11 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL:
+    baseURL: 'http://rails-backend:3000/',
+    browserBaseURL:
       process.env.NODE_ENV === 'production'
         ? 'https://portfolio.sakumon.me/'
-        : 'http://sakumon.localhost/',
+        : 'https://sakumon.localhost/',
   },
   /*
    ** vuetify module configuration

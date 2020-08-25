@@ -1,0 +1,30 @@
+apiVersion: skaffold/v2beta6
+kind: Config
+
+# Dockerイメージのビルドに関する設定
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    # ビルドするイメージ
+    - image: suzukey/pf-sakumon-frontend
+      context: frontend/
+      docker:
+        dockerfile: Dockerfile.dev
+    - image: suzukey/pf-sakumon-backend
+      context: backend/
+      docker:
+        dockerfile: Dockerfile.dev
+  local:
+    useBuildkit: true
+
+# デプロイに関する設定
+deploy:
+  kubectl:
+    manifests:
+      # MyContainers
+      - k8s/frontend.yaml
+      - k8s/backend.yaml
+      - k8s/ingress.dev.yaml
+      # Ingress
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
