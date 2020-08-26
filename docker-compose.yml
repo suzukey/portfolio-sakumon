@@ -1,19 +1,48 @@
-version: "3.7"
+version: "3"
 
 services:
-  pf-sakumon-backend:
-    container_name: pf-sakumon-backend
+  backend:
+    container_name: rails-backend
+    image: suzukey/pf-sakumon-backend:latest
     build:
       context: ./backend
-    ports:
-      - "3000:3000"
+      dockerfile: Dockerfile.dev
+    expose:
+      - "3000"
     volumes:
       - ./backend/app:/app
-  pf-sakumon-frontend:
-    container_name: pf-sakumon-frontend
+  frontend:
+    container_name: nuxt-frontend
+    image: suzukey/pf-sakumon-frontend:latest
     build:
       context: ./frontend
-    ports:
-      - "80:3000"
+      dockerfile: Dockerfile.dev
+    command: "yarn dev"
+    expose:
+      - "3000"
     volumes:
       - ./frontend/app:/app
+      - /app/node_modules
+      - /app/.nuxt
+  webserver:
+    container_name: pf-sakumon-webserver
+    image: suzukey/pf-sakumon-webserver:latest
+    build:
+      context: ./docker/nginx
+    restart: always
+    expose:
+      - "80"
+    depends_on:
+      - frontend
+      - backend
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - webserver
+    restart: always
+    environment:
+      STAGE: local
+      DOMAINS: "sakumon.localhost -> http://webserver"
