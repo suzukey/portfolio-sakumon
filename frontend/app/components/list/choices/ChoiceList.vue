@@ -27,14 +27,7 @@
 </template>
 
 <script>
-import Skeletons from '~/components/list/Skeletons.vue'
-import ChoiceListItem from '~/components/list/choices/ChoiceListItem.vue'
-
 export default {
-  components: {
-    Skeletons,
-    ChoiceListItem,
-  },
   props: {
     postId: {
       type: String,

@@ -32,15 +32,8 @@
 </template>
 
 <script>
-import EditPost from '~/components/posts/EditPost.vue'
-import QuestionList from '~/components/list/questions/QuestionList.vue'
-
 export default {
   middleware: 'authenticated',
-  components: {
-    EditPost,
-    QuestionList,
-  },
   async asyncData({ $axios, params, error }) {
     const postId = params.post_id
     const postUrl = `/api/v1/posts/${postId}`

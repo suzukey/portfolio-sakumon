@@ -13,7 +13,7 @@
                   新規作成
                 </v-btn>
               </v-subheader>
-              <PostList
+              <PostsList
                 :posts="posts"
                 :loading="loading"
                 :show-user-info="false"
@@ -31,15 +31,8 @@
 </template>
 
 <script>
-import PostList from '~/components/list/posts/PostsList.vue'
-import Pagination from '~/components/list/Pagination.vue'
-
 export default {
   middleware: 'authenticated',
-  components: {
-    PostList,
-    Pagination,
-  },
   async asyncData({ $axios, query, error }) {
     let postsUrl = `/api/v1/me/posts`
     postsUrl += '?page=' + (query.page || '1')

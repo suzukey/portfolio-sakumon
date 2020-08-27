@@ -28,7 +28,7 @@
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
 
-        <account-menu></account-menu>
+        <AccountMenu />
       </template>
       <template v-else>
         <v-btn text nuxt to="/login" class="ml-1">ログイン</v-btn>
@@ -61,12 +61,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AccountMenu from '~/components/common/AccountMenu.vue'
 
 export default {
-  component: {
-    AccountMenu,
-  },
   props: {
     elevateOnScroll: {
       type: Boolean,

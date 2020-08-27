@@ -6,7 +6,7 @@
           <v-card v-if="!loading" class="py-2">
             <v-list-item nuxt :to="`/users/${post.user.name}`">
               <v-list-item-avatar>
-                <user-icon :icon-url="post.user.iconUrl" />
+                <UserIcon :icon-url="post.user.iconUrl" />
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -38,12 +38,7 @@
 <script>
 import { mapActions } from 'vuex'
 
-import UserIcon from '~/components/common/UserIcon.vue'
-
 export default {
-  components: {
-    UserIcon,
-  },
   async asyncData({ $axios, params, error }) {
     const postId = params.post_id
     const postUrl = `api/v1/posts/${postId}`

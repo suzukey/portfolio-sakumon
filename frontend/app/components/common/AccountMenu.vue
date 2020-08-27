@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn icon v-bind="attrs" class="ml-1" v-on="on">
         <v-avatar color="gray" size="36">
-          <user-icon :icon-url="iconUrl" />
+          <UserIcon :icon-url="iconUrl" />
         </v-avatar>
       </v-btn>
     </template>
@@ -43,7 +43,7 @@
           </v-list-item-content>
           <v-list-item-action></v-list-item-action>
         </v-list-item>
-        <v-divider> </v-divider>
+        <v-divider></v-divider>
         <v-list-item @click="logout">
           <v-list-item-icon>
             <v-icon>mdi-exit-to-app</v-icon>
@@ -60,12 +60,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import UserIcon from '~/components/common/UserIcon.vue'
-
 export default {
-  components: {
-    UserIcon,
-  },
   computed: {
     ...mapGetters('user', ['name', 'nickname', 'iconUrl']),
   },

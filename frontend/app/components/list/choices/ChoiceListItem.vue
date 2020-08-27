@@ -6,7 +6,7 @@
   >
     <!-- 可視性表示 -->
     <v-list-item-avatar>
-      <status-icon-switcher :status="choice.correct ? 'correct' : ''" />
+      <ChoiceStatusIconSwitcher :status="choice.correct ? 'correct' : ''" />
     </v-list-item-avatar>
 
     <!-- 投稿内容 -->
@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import StatusIconSwitcher from '~/components/list/choices/ChoiceStatusIconSwitcher.vue'
-
 export default {
-  components: {
-    StatusIconSwitcher,
-  },
   props: {
     postId: {
       type: String,

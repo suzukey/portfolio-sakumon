@@ -6,18 +6,13 @@
         <span>最新の投稿</span>
       </v-subheader>
 
-      <posts-list :posts="posts" :loading="loading"></posts-list>
+      <PostsList :posts="posts" :loading="loading" />
     </v-list>
   </v-card>
 </template>
 
 <script>
-import PostsList from '~/components/list/posts/PostsList.vue'
-
 export default {
-  components: {
-    PostsList,
-  },
   async fetch() {
     const url = 'api/v1/posts/latest'
     const response = await this.$axios.$get(url)

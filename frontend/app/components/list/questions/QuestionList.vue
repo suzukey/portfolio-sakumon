@@ -27,14 +27,7 @@
 </template>
 
 <script>
-import Skeletons from '~/components/list/Skeletons.vue'
-import QuestionListItem from '~/components/list/questions/QuestionListItem.vue'
-
 export default {
-  components: {
-    Skeletons,
-    QuestionListItem,
-  },
   props: {
     post: {
       type: Object,

@@ -6,7 +6,7 @@
           <v-card class="py-2">
             <v-list-item>
               <v-list-item-avatar size="50" class="gray">
-                <user-icon :icon-url="user.iconUrl" />
+                <UserIcon :icon-url="user.iconUrl" />
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -26,14 +26,14 @@
                 <v-icon class="mr-2" color="accent">mdi-file</v-icon>
                 <span>投稿一覧</span>
               </v-subheader>
-              <posts-list
+              <PostsList
                 :posts="posts"
                 :loading="loading"
                 :show-user-info="false"
                 :show-status="isCurrentUser"
                 no-records="投稿がありません"
-              ></posts-list>
-              <pagination :length="totalPages" :page="currentPage"></pagination>
+              />
+              <Pagination :length="totalPages" :page="currentPage" />
             </v-list>
           </v-card>
         </v-col>
@@ -45,16 +45,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import PostsList from '~/components/list/posts/PostsList.vue'
-import Pagination from '~/components/list/Pagination.vue'
-import UserIcon from '~/components/common/UserIcon.vue'
-
 export default {
-  components: {
-    PostsList,
-    Pagination,
-    UserIcon,
-  },
   async asyncData({ $axios, params, query, error }) {
     const username = params.name
 

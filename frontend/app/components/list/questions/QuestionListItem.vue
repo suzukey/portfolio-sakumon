@@ -6,7 +6,7 @@
   >
     <!-- 可視性表示 -->
     <v-list-item-avatar>
-      <status-icon-switcher :status="question.status" />
+      <QuestionStatusIconSwitcher :status="question.status" />
     </v-list-item-avatar>
 
     <!-- 投稿内容 -->
@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import StatusIconSwitcher from '~/components/list/questions/QuestionStatusIconSwitcher.vue'
-
 export default {
-  components: {
-    StatusIconSwitcher,
-  },
   props: {
     postId: {
       type: String,

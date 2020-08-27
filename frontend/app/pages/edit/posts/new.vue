@@ -11,13 +11,8 @@
 </template>
 
 <script>
-import CreatePost from '~/components/posts/CreatePost.vue'
-
 export default {
   middleware: 'authenticated',
-  components: {
-    CreatePost,
-  },
   head() {
     return {
       title: '新規投稿',
