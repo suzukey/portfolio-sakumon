@@ -52,7 +52,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/axios', '~/plugins/renderer'],
+  plugins: [{ src: '~/plugins/axios.js' }, { src: '~/plugins/renderer.js' }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
