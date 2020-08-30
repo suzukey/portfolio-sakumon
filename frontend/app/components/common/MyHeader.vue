@@ -99,7 +99,10 @@ export default {
     toggleTheme() {
       const toDarkTheme = !this.isDarkTheme
       this.$vuetify.theme.dark = toDarkTheme
-      localStorage.setItem('theme', toDarkTheme ? 'dark' : 'light')
+      this.$cookies.set('theme', toDarkTheme ? 'dark' : 'light', {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 365,
+      })
     },
     onClickOutside() {
       this.showSearch = false

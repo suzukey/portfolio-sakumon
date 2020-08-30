@@ -52,7 +52,11 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: '~/plugins/axios.js' }, { src: '~/plugins/renderer.js' }],
+  plugins: [
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/initTheme.js', mode: 'client' },
+    { src: '~/plugins/renderer.js' },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -78,6 +82,7 @@ export default {
     '@nuxtjs/svg',
     '@nuxtjs/toast',
     '@nuxtjs/markdownit',
+    'cookie-universal-nuxt',
   ],
   /*
    ** vue-router module configuration
@@ -88,6 +93,7 @@ export default {
       const result = qs.stringify(query, { format: 'RFC1738' })
       return result ? '?' + result : ''
     },
+    middleware: 'initTheme',
   },
   /*
    ** Axios module configuration
@@ -95,10 +101,7 @@ export default {
    */
   axios: {
     baseURL: 'http://rails-backend:3000/',
-    browserBaseURL:
-      process.env.NODE_ENV === 'production'
-        ? 'https://portfolio.sakumon.me/'
-        : 'https://sakumon.localhost/',
+    browserBaseURL: '/',
   },
   /*
    ** vuetify module configuration

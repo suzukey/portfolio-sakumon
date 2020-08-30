@@ -3,7 +3,7 @@ import SakumonIcon from '~/components/icons/Sakumon.vue'
 
 export default {
   theme: {
-    dark: !process.server && localStorage.getItem('theme') === 'dark',
+    dark: false,
     themes: {
       dark: {
         primary: colors.cyan.darken3,
