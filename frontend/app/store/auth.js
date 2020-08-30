@@ -54,7 +54,7 @@ export const actions = {
       .$delete('/api/v1/auth/sign_out')
       .then(() => {
         commit('logout')
-        commit('user/revertUserInfo', { root: true })
+        commit('user/revertUserInfo', null, { root: true })
         this.$router.push('/')
       })
       .catch(() => {
