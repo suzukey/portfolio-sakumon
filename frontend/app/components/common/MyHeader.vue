@@ -23,19 +23,15 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn icon class="ml-1" @click="toggleTheme">
-        <v-icon v-if="$vuetify.theme.dark">mdi-brightness-3</v-icon>
-        <v-icon v-else>mdi-brightness-7</v-icon>
-      </v-btn>
-
       <template v-if="isAuthenticated">
         <v-btn icon nuxt to="/posts/me" class="ml-1">
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
-
-        <AccountMenu />
       </template>
-      <template v-else>
+
+      <MoreMenu class="ml-1" />
+
+      <template v-if="!isAuthenticated">
         <div class="d-none d-sm-inline">
           <v-btn text nuxt to="/login" class="ml-1">ログイン</v-btn>
           <v-btn outlined nuxt to="/register" class="ml-1">新規登録</v-btn>
@@ -87,22 +83,11 @@ export default {
     }
   },
   computed: {
-    isDarkTheme() {
-      return this.$vuetify.theme.dark
-    },
     ...mapGetters('auth', ['isAuthenticated']),
   },
   methods: {
     toggleSearch() {
       this.showSearch = !this.showSearch
-    },
-    toggleTheme() {
-      const toDarkTheme = !this.isDarkTheme
-      this.$vuetify.theme.dark = toDarkTheme
-      this.$cookies.set('theme', toDarkTheme ? 'dark' : 'light', {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 365,
-      })
     },
     onClickOutside() {
       this.showSearch = false
