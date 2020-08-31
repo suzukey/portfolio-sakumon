@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-header></my-header>
+    <MyHeader />
     <v-main>
       <v-container>
         <v-row justify="center">
@@ -27,14 +27,9 @@
 </template>
 
 <script>
-import MyHeader from '~/components/common/Header.vue'
-
 export default {
   layout: 'customizable',
   middleware: 'authenticated',
-  components: {
-    MyHeader,
-  },
   data() {
     return {
       question: {

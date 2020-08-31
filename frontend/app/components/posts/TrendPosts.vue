@@ -13,10 +13,10 @@
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="trend in trends" :key="trend.tab">
-          <posts-list
+          <PostsList
             :posts="posts[trend.tab].data"
             :loading="posts[trend.tab].loading"
-          ></posts-list>
+          />
         </v-tab-item>
       </v-tabs-items>
     </v-list>
@@ -24,12 +24,7 @@
 </template>
 
 <script>
-import PostsList from '~/components/list/posts/PostsList.vue'
-
 export default {
-  components: {
-    PostsList,
-  },
   async fetch() {
     let trendScope = this.$route.query.scope
 

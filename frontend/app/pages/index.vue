@@ -1,43 +1,28 @@
 <template>
   <div class="home">
-    <my-header :elevate-on-scroll="isShowAbout"></my-header>
+    <MyHeader :elevate-on-scroll="isShowAbout" />
     <v-main>
-      <home-about v-if="isShowAbout"></home-about>
+      <HomeAbout v-if="isShowAbout" />
       <v-container>
         <v-row justify="center">
           <v-col cols="12">
-            <trend-posts></trend-posts>
+            <TrendPosts />
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols="12">
-            <latest-posts></latest-posts>
+            <LatestPosts />
           </v-col>
         </v-row>
-        <scroll-to-top></scroll-to-top>
+        <ScrollToTop />
       </v-container>
     </v-main>
-    <my-footer></my-footer>
+    <MyFooter />
   </div>
 </template>
 
 <script>
-import MyHeader from '~/components/common/Header.vue'
-import MyFooter from '~/components/common/Footer.vue'
-import ScrollToTop from '~/components/common/ScrollToTop.vue'
-import HomeAbout from '~/components/common/HomeAbout.vue'
-import LatestPosts from '~/components/posts/LatestPosts.vue'
-import TrendPosts from '~/components/posts/TrendPosts.vue'
-
 export default {
-  components: {
-    MyHeader,
-    MyFooter,
-    ScrollToTop,
-    HomeAbout,
-    LatestPosts,
-    TrendPosts,
-  },
   computed: {
     isShowAbout() {
       // 認証前のみ表示する

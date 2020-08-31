@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <page-selector active-page="login"></page-selector>
+    <PageSelector active-page="login" />
     <v-text-field
       v-model="credential.email"
       prepend-inner-icon="mdi-email"
@@ -30,7 +30,7 @@
     >
       <span class="font-weight-bold text-subtitle-1">ログイン</span>
     </v-btn>
-    <easy-login />
+    <EasyLogin />
     <p class="forgot text-right mb-0 mt-5">
       <nuxt-link to="forgot-password">パスワードを忘れた場合</nuxt-link>
     </p>
@@ -40,14 +40,7 @@
 <script>
 import { mapActions } from 'vuex'
 
-import PageSelector from '~/components/auth/PageSelector.vue'
-import EasyLogin from '~/components/auth/EasyLogin.vue'
-
 export default {
-  components: {
-    PageSelector,
-    EasyLogin,
-  },
   data() {
     return {
       credential: {

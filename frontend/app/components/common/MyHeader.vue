@@ -27,13 +27,20 @@
         <v-btn icon nuxt to="/posts/me" class="ml-1">
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
-
-        <account-menu></account-menu>
       </template>
-      <template v-else>
-        <v-btn text nuxt to="/login" class="ml-1">ログイン</v-btn>
 
-        <v-btn outlined nuxt to="/register" class="ml-1">新規登録</v-btn>
+      <MoreMenu class="ml-1" />
+
+      <template v-if="!isAuthenticated">
+        <div class="d-none d-sm-inline">
+          <v-btn text nuxt to="/login" class="ml-1">ログイン</v-btn>
+          <v-btn outlined nuxt to="/register" class="ml-1">新規登録</v-btn>
+        </div>
+        <div class="d-sm-none">
+          <v-btn icon nuxt to="/login" class="ml-1">
+            <v-icon>mdi-login-variant</v-icon>
+          </v-btn>
+        </div>
       </template>
       <div class="pa-0 ma-0"></div>
     </template>
@@ -61,12 +68,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AccountMenu from '~/components/common/AccountMenu.vue'
 
 export default {
-  component: {
-    AccountMenu,
-  },
   props: {
     elevateOnScroll: {
       type: Boolean,

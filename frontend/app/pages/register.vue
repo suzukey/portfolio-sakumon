@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <page-selector active-page="register"></page-selector>
+    <PageSelector active-page="register" />
     <v-text-field
       v-model="credential.name"
       :counter="16"
@@ -38,21 +38,14 @@
     >
       <span class="font-weight-bold text-subtitle-1">登録する</span>
     </v-btn>
-    <easy-login />
+    <EasyLogin />
   </v-card-text>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 
-import PageSelector from '~/components/auth/PageSelector.vue'
-import EasyLogin from '~/components/auth/EasyLogin.vue'
-
 export default {
-  components: {
-    PageSelector,
-    EasyLogin,
-  },
   data() {
     return {
       credential: {

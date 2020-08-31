@@ -12,13 +12,13 @@
         @click.native.stop
       >
         <v-avatar color="grey" size="40">
-          <user-icon :icon-url="post.user.iconUrl" />
+          <UserIcon :icon-url="post.user.iconUrl" />
         </v-avatar>
       </nuxt-link>
     </v-list-item-avatar>
     <!-- 可視性表示 -->
     <v-list-item-avatar v-else-if="showStatus">
-      <status-icon-switcher :status="post.status" />
+      <PostStatusIconSwitcher :status="post.status" />
     </v-list-item-avatar>
 
     <!-- 投稿内容 -->
@@ -98,14 +98,7 @@
 </template>
 
 <script>
-import UserIcon from '~/components/common/UserIcon.vue'
-import StatusIconSwitcher from '~/components/list/posts/PostStatusIconSwitcher.vue'
-
 export default {
-  components: {
-    UserIcon,
-    StatusIconSwitcher,
-  },
   props: {
     post: {
       type: Object,

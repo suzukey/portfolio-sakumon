@@ -1,13 +1,8 @@
 <template>
   <v-app-bar app color="primary" dark>
-    <v-toolbar-title>
-      <nuxt-link
-        to="/"
-        class="title-link font-weight-medium d-flex align-center"
-      >
-        <v-icon large>$vuetify.icons.values.sakumon</v-icon>
-        <span class="ml-2 d-none d-sm-inline">SakuMon</span>
-      </nuxt-link>
+    <v-toolbar-title class="font-weight-medium d-flex align-center">
+      <v-icon large>$vuetify.icons.values.sakumon</v-icon>
+      <span class="ml-2 d-none d-sm-inline">SakuMon</span>
     </v-toolbar-title>
 
     <v-spacer />

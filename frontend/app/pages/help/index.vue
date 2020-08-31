@@ -1,16 +1,11 @@
 <template>
   <v-main>
-    <no-contents></no-contents>
+    <NoContents />
   </v-main>
 </template>
 
 <script>
-import NoContents from '~/components/NoContents.vue'
-
 export default {
-  components: {
-    NoContents,
-  },
   head() {
     return {
       title: 'ヘルプ',

@@ -6,7 +6,7 @@
           <v-card class="py-2">
             <v-row align="center" justify="center" class="pt-7 pb-5">
               <v-avatar size="100">
-                <user-icon :icon-url="user.iconUrl"></user-icon>
+                <UserIcon :icon-url="user.iconUrl" />
                 <v-overlay absolute z-index="3">
                   <v-btn icon @click="selectImage">
                     <v-icon>mdi-camera</v-icon>
@@ -49,13 +49,8 @@
 <script>
 import { mapActions } from 'vuex'
 
-import UserIcon from '~/components/common/UserIcon.vue'
-
 export default {
   middleware: 'authenticated',
-  components: {
-    UserIcon,
-  },
   async asyncData({ $axios, error }) {
     const userUrl = `/api/v1/me/profile`
 

@@ -16,8 +16,8 @@
                 <v-icon class="mr-2" color="accent">mdi-magnify</v-icon>
                 <span>「{{ searchQuery }}」の検索結果</span>
               </v-subheader>
-              <posts-list :posts="posts" :loading="loading"></posts-list>
-              <pagination :length="totalPages" :page="currentPage"></pagination>
+              <PostsList :posts="posts" :loading="loading" />
+              <Pagination :length="totalPages" :page="currentPage" />
             </v-list>
           </v-card>
         </v-col>
@@ -27,14 +27,7 @@
 </template>
 
 <script>
-import PostsList from '~/components/list/posts/PostsList.vue'
-import Pagination from '~/components/list/Pagination.vue'
-
 export default {
-  components: {
-    PostsList,
-    Pagination,
-  },
   async asyncData({ $axios, query, error }) {
     let url = 'api/v1/posts/search'
     url += '?q=' + (query.q || '')

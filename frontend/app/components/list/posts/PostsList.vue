@@ -6,12 +6,12 @@
     <template v-else-if="existPosts">
       <div v-for="post in posts" :key="post.id" class="posts-list-item">
         <v-divider></v-divider>
-        <posts-list-item
+        <PostsListItem
           :show-user-info="showUserInfo"
           :show-status="showStatus"
           :show-edit="showEdit"
           :post="post"
-        ></posts-list-item>
+        />
       </div>
     </template>
     <template v-else>
@@ -28,14 +28,7 @@
 </template>
 
 <script>
-import Skeletons from '~/components/list/Skeletons.vue'
-import PostsListItem from '~/components/list/posts/PostsListItem.vue'
-
 export default {
-  components: {
-    Skeletons,
-    PostsListItem,
-  },
   props: {
     posts: {
       type: Array,
